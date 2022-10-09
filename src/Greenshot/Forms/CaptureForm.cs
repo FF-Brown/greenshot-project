@@ -398,9 +398,7 @@ namespace Greenshot.Forms
                         zoom = Conf.ZoomerEnabled;
                         InitializeZoomer(zoom);
                     }
-
                     break;
-
 
             }
         }
