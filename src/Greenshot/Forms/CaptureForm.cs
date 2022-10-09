@@ -88,7 +88,7 @@ namespace Greenshot.Forms
         private readonly bool _isZoomerTransparent = Conf.ZoomerOpacity < 1;
         private bool _isCtrlPressed;
         private bool _showDebugInfo;
-
+        private bool zoom = Conf.ZoomerEnabled;
         /// <summary>
         /// Property to access the selected capture rectangle
         /// </summary>
@@ -186,7 +186,7 @@ namespace Greenshot.Forms
             }
 
             // Set the zoomer animation
-            InitializeZoomer(Conf.ZoomerEnabled);
+            InitializeZoomer(zoom);
 
             // Make sure the size is set correctly
             SetSize();
@@ -384,8 +384,24 @@ namespace Greenshot.Forms
                     {
                         Invalidate();
                     }
+                    break;
+
+                case Keys.E:
+
+                    if (zoom == Conf.ZoomerEnabled)
+                    {
+                        zoom = false;
+                        InitializeZoomer(zoom);
+                    }
+                    else
+                    {
+                        zoom = Conf.ZoomerEnabled;
+                        InitializeZoomer(zoom);
+                    }
 
                     break;
+
+
             }
         }
 
