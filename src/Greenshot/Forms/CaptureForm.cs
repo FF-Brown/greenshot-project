@@ -88,7 +88,9 @@ namespace Greenshot.Forms
         private readonly bool _isZoomerTransparent = Conf.ZoomerOpacity < 1;
         private bool _isCtrlPressed;
         private bool _showDebugInfo;
-        private bool zoom = Conf.ZoomerEnabled;
+        private int zoomW = 250;
+        private int zoomH = 250;
+
         /// <summary>
         /// Property to access the selected capture rectangle
         /// </summary>
@@ -186,7 +188,7 @@ namespace Greenshot.Forms
             }
 
             // Set the zoomer animation
-            InitializeZoomer(zoom);
+            InitializeZoomer(Conf.ZoomerEnabled);
 
             // Make sure the size is set correctly
             SetSize();
@@ -385,19 +387,13 @@ namespace Greenshot.Forms
                         Invalidate();
                     }
                     break;
-
-                case Keys.E:
-
-                    if (zoom == Conf.ZoomerEnabled)
-                    {
-                        zoom = false;
-                        InitializeZoomer(zoom);
-                    }
-                    else
-                    {
-                        zoom = Conf.ZoomerEnabled;
-                        InitializeZoomer(zoom);
-                    }
+                case Keys.O:
+                    zoomW += 25;
+                    zoomH += 25;
+                    break;
+                case Keys.I:
+                    zoomW -= 25;
+                    zoomH -= 25;
                     break;
 
             }
@@ -1180,10 +1176,7 @@ namespace Greenshot.Forms
             // Zoom
             if (_zoomAnimator != null && (IsAnimating(_zoomAnimator) || _captureMode != CaptureMode.Window))
             {
-                const int zoomSourceWidth = 25;
-                const int zoomSourceHeight = 25;
-
-                var sourceRectangle = new NativeRect(_cursorPos.X - zoomSourceWidth / 2, _cursorPos.Y - zoomSourceHeight / 2, zoomSourceWidth, zoomSourceHeight);
+                var sourceRectangle = new NativeRect(_cursorPos.X - zoomW / 2, _cursorPos.Y - zoomH / 2, zoomW, zoomH);
 
                 var destinationRectangle = _zoomAnimator.Current;
                 destinationRectangle = destinationRectangle.Offset(_cursorPos);
