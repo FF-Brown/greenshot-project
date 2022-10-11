@@ -88,8 +88,8 @@ namespace Greenshot.Forms
         private readonly bool _isZoomerTransparent = Conf.ZoomerOpacity < 1;
         private bool _isCtrlPressed;
         private bool _showDebugInfo;
-        private int zoomW = 250;
-        private int zoomH = 250;
+        private int zoomWidth = 250;
+        private int zoomHeight  = 250;
 
         /// <summary>
         /// Property to access the selected capture rectangle
@@ -388,12 +388,12 @@ namespace Greenshot.Forms
                     }
                     break;
                 case Keys.O:
-                    zoomW += 25;
-                    zoomH += 25;
+                    zoomWidth += 25;
+                    zoomHeight += 25;
                     break;
                 case Keys.I:
-                    zoomW -= 25;
-                    zoomH -= 25;
+                    zoomWidth -= 25;
+                    zoomHeight -= 25;
                     break;
 
             }
@@ -1176,7 +1176,7 @@ namespace Greenshot.Forms
             // Zoom
             if (_zoomAnimator != null && (IsAnimating(_zoomAnimator) || _captureMode != CaptureMode.Window))
             {
-                var sourceRectangle = new NativeRect(_cursorPos.X - zoomW / 2, _cursorPos.Y - zoomH / 2, zoomW, zoomH);
+                var sourceRectangle = new NativeRect(_cursorPos.X - zoomWidth / 2, _cursorPos.Y - zoomHeight  / 2, zoomWidth, zoomHeight );
 
                 var destinationRectangle = _zoomAnimator.Current;
                 destinationRectangle = destinationRectangle.Offset(_cursorPos);
