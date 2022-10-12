@@ -774,11 +774,6 @@ namespace Greenshot.Editor.Forms
             BtnRectClick(sender, e);
         }
 
-        private void RedactToolStripMenuItemClick(object sender, EventArgs e)
-        {
-            BtnRedactClick(sender, e);
-        }
-
         private void DrawFreehandToolStripMenuItemClick(object sender, EventArgs e)
         {
             BtnFreehandClick(sender, e);
