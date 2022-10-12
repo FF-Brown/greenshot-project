@@ -44,7 +44,7 @@ namespace Greenshot.Editor.Drawing
         }
 
         /// <summary>
-        /// Do some logic to make sure all field are initiated correctly
+        /// Do some logic to make sure all fields are initiated correctly
         /// </summary>
         /// <param name="streamingContext">StreamingContext</param>
         protected override void OnDeserialized(StreamingContext streamingContext)
