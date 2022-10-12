@@ -285,7 +285,7 @@ namespace Greenshot.Editor.Forms
 
             _toolbarButtons = new[]
             {
-                btnCursor, btnRect, btnEllipse, btnText, btnLine, btnArrow, btnFreehand, btnHighlight, btnObfuscate, btnCrop, btnStepLabel, btnSpeechBubble
+                btnCursor, btnRect, btnEllipse, btnText, btnLine, btnArrow, btnFreehand, btnHighlight, btnRedact, btnObfuscate, btnCrop, btnStepLabel, btnSpeechBubble
             };
             //toolbarDropDownButtons = new ToolStripDropDownButton[]{btnBlur, btnPixeliate, btnTextHighlighter, btnAreaHighlighter, btnMagnifier};
 
@@ -625,6 +625,9 @@ namespace Greenshot.Editor.Forms
                 case DrawingModes.Highlight:
                     SetButtonChecked(btnHighlight);
                     break;
+                case DrawingModes.Redact:
+                    SetButtonChecked(btnRedact);
+                    break;
                 case DrawingModes.Obfuscate:
                     SetButtonChecked(btnObfuscate);
                     break;
@@ -689,12 +692,6 @@ namespace Greenshot.Editor.Forms
             RefreshFieldControls();
         }
 
-        private void BtnRedactClick(object sender, EventArgs e)
-        {
-            _surface.DrawingMode = DrawingModes.Redact;
-            RefreshFieldControls();
-        }
-
         private void BtnTextClick(object sender, EventArgs e)
         {
             _surface.DrawingMode = DrawingModes.Text;
@@ -737,6 +734,12 @@ namespace Greenshot.Editor.Forms
         private void BtnHighlightClick(object sender, EventArgs e)
         {
             _surface.DrawingMode = DrawingModes.Highlight;
+            RefreshFieldControls();
+        }
+
+        private void BtnRedactClick(object sender, EventArgs e)
+        {
+            _surface.DrawingMode = DrawingModes.Redact;
             RefreshFieldControls();
         }
 

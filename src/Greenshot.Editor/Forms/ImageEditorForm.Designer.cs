@@ -62,7 +62,6 @@ namespace Greenshot.Editor.Forms {
 			this.btnCursor = new GreenshotToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.btnRect = new GreenshotToolStripButton();
-            this.btnRedact = new GreenshotToolStripButton();
 			this.btnEllipse = new GreenshotToolStripButton();
 			this.btnLine = new GreenshotToolStripButton();
 			this.btnArrow = new GreenshotToolStripButton();
@@ -72,6 +71,7 @@ namespace Greenshot.Editor.Forms {
 			this.btnStepLabel = new GreenshotToolStripButton();
 			this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
 			this.btnHighlight = new GreenshotToolStripButton();
+            this.btnRedact = new GreenshotToolStripButton();
 			this.btnObfuscate = new GreenshotToolStripButton();
 			this.toolStripSplitButton1 = new GreenshotToolStripDropDownButton();
 			this.addBorderToolStripMenuItem = new GreenshotToolStripMenuItem();
@@ -1937,6 +1937,7 @@ namespace Greenshot.Editor.Forms {
 		private GreenshotToolStripMenuItem blurToolStripMenuItem;
 		private BindableToolStripDropDownButton obfuscateModeButton;
 		private GreenshotToolStripButton btnHighlight;
+        private GreenshotToolStripButton btnRedact;
 		private GreenshotToolStripMenuItem loadElementsToolStripMenuItem;
 		private GreenshotToolStripMenuItem saveElementsToolStripMenuItem;
 		private FontFamilyComboBox fontFamilyComboBox;
@@ -2037,7 +2038,6 @@ namespace Greenshot.Editor.Forms {
 		private GreenshotToolStripButton btnEllipse;
 		private GreenshotToolStripButton btnSave;
 		private GreenshotToolStripButton btnRect;
-        private GreenshotToolStripButton btnRedact;
 		private System.Windows.Forms.ToolStripContainer topToolStripContainer;
 		private ToolStripEx destinationsToolStrip;
 		private NonJumpingPanel panel1;
