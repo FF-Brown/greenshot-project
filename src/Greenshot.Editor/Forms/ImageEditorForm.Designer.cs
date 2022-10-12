@@ -101,7 +101,6 @@ namespace Greenshot.Editor.Forms {
 			this.insert_window_toolstripmenuitem = new GreenshotToolStripMenuItem();
 			this.objectToolStripMenuItem = new GreenshotToolStripMenuItem();
             this.addRectangleToolStripMenuItem = new GreenshotToolStripMenuItem();
-            this.redactToolStripMenuItem = new GreenshotToolStripMenuItem();
             this.addEllipseToolStripMenuItem = new GreenshotToolStripMenuItem();
 			this.drawLineToolStripMenuItem = new GreenshotToolStripMenuItem();
 			this.drawArrowToolStripMenuItem = new GreenshotToolStripMenuItem();
@@ -331,7 +330,6 @@ namespace Greenshot.Editor.Forms {
 									this.btnCursor,
 									this.toolStripSeparator1,
 									this.btnRect,
-                                    this.btnRedact,
 									this.btnEllipse,
 									this.btnLine,
 									this.btnArrow,
@@ -341,6 +339,7 @@ namespace Greenshot.Editor.Forms {
 									this.btnStepLabel,
 									this.toolStripSeparator14,
 									this.btnHighlight,
+                                    this.btnRedact,
 									this.btnObfuscate,
 									this.toolStripSplitButton1,
 									this.toolStripSeparator13,
@@ -379,16 +378,6 @@ namespace Greenshot.Editor.Forms {
             this.btnRect.LanguageKey = "editor_drawrectangle";
             this.btnRect.Name = "btnRect";
             this.btnRect.Click += new System.EventHandler(this.BtnRectClick);
-            // 
-            // btnRedact
-            // 
-            this.btnRedact.CheckOnClick = true;
-            this.btnRedact.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnRedact.Image = ((System.Drawing.Image)(resources.GetObject("btnRedact.Image")));
-            this.btnRedact.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnRedact.LanguageKey = "editor_redact";
-            this.btnRedact.Name = "btnRedact";
-            this.btnRedact.Click += new System.EventHandler(this.BtnRedactClick);
             // 
             // btnEllipse
             // 
@@ -471,6 +460,16 @@ namespace Greenshot.Editor.Forms {
 			this.btnHighlight.LanguageKey = "editor_drawhighlighter";
 			this.btnHighlight.Name = "btnHighlight";
 			this.btnHighlight.Click += new System.EventHandler(this.BtnHighlightClick);
+            // 
+            // btnRedact
+            // 
+            this.btnRedact.CheckOnClick = true;
+            this.btnRedact.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnRedact.Image = ((System.Drawing.Image)(resources.GetObject("btnRedact.Image")));
+            this.btnRedact.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRedact.LanguageKey = "editor_redact";
+            this.btnRedact.Name = "btnRedact";
+            this.btnRedact.Click += new System.EventHandler(this.BtnRedactClick);
 			// 
 			// btnObfuscate
 			// 
@@ -701,7 +700,6 @@ namespace Greenshot.Editor.Forms {
 			// 
 			this.objectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 									this.addRectangleToolStripMenuItem,
-                                    this.redactToolStripMenuItem,
 									this.addEllipseToolStripMenuItem,
 									this.drawLineToolStripMenuItem,
 									this.drawArrowToolStripMenuItem,
@@ -727,13 +725,6 @@ namespace Greenshot.Editor.Forms {
             this.addRectangleToolStripMenuItem.LanguageKey = "editor_drawrectangle";
             this.addRectangleToolStripMenuItem.Name = "addRectangleToolStripMenuItem";
             this.addRectangleToolStripMenuItem.Click += new System.EventHandler(this.AddRectangleToolStripMenuItemClick);
-            // 
-            // redactToolStripMenuItem
-            // 
-            this.redactToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("btnRedact.Image")));
-            this.redactToolStripMenuItem.LanguageKey = "editor_redact";
-            this.redactToolStripMenuItem.Name = "redactToolStripMenuItem";
-            this.redactToolStripMenuItem.Click += new System.EventHandler(this.RedactToolStripMenuItemClick);
             // 
             // addEllipseToolStripMenuItem
             // 
@@ -2022,7 +2013,6 @@ namespace Greenshot.Editor.Forms {
 		private GreenshotToolStripMenuItem addCounterToolStripMenuItem;
 		private GreenshotToolStripMenuItem addEllipseToolStripMenuItem;
 		private GreenshotToolStripMenuItem addRectangleToolStripMenuItem;
-        private GreenshotToolStripMenuItem redactToolStripMenuItem;
 		private GreenshotToolStripMenuItem objectToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem undoToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem redoToolStripMenuItem;
