@@ -384,9 +384,9 @@ namespace Greenshot.Editor.Forms {
             // 
             this.btnRedact.CheckOnClick = true;
             this.btnRedact.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnRedact.Image = ((System.Drawing.Image)(resources.GetObject("btnRect.Image")));
+            this.btnRedact.Image = ((System.Drawing.Image)(resources.GetObject("btnRedact.Image")));
             this.btnRedact.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnRedact.LanguageKey = "editor_drawrectangle";
+            this.btnRedact.LanguageKey = "editor_redact";
             this.btnRedact.Name = "btnRedact";
             this.btnRedact.Click += new System.EventHandler(this.BtnRedactClick);
             // 
@@ -730,8 +730,8 @@ namespace Greenshot.Editor.Forms {
             // 
             // redactToolStripMenuItem
             // 
-            this.redactToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("addRectangleToolStripMenuItem.Image")));//TODO
-            this.redactToolStripMenuItem.LanguageKey = "editor_drawrectangle";//TODO
+            this.redactToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("btnRedact.Image")));
+            this.redactToolStripMenuItem.LanguageKey = "editor_redact";
             this.redactToolStripMenuItem.Name = "redactToolStripMenuItem";
             this.redactToolStripMenuItem.Click += new System.EventHandler(this.RedactToolStripMenuItemClick);
             // 
