@@ -218,6 +218,11 @@ namespace Greenshot.Editor.Forms {
 			this.zoomStatusDropDownBtn = new System.Windows.Forms.ToolStripDropDownButton();
 			this.zoomMainMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusStripSpacer = new System.Windows.Forms.ToolStripStatusLabel();
+
+            this.btnLeftClickIcon = new GreenshotToolStripButton();
+            this.leftClickToolStripMenuItem = new GreenshotToolStripMenuItem();
+         
+
 			this.topToolStripContainer.BottomToolStripPanel.SuspendLayout();
 			this.topToolStripContainer.ContentPanel.SuspendLayout();
 			this.topToolStripContainer.LeftToolStripPanel.SuspendLayout();
@@ -336,6 +341,7 @@ namespace Greenshot.Editor.Forms {
 									this.btnText,
 									this.btnSpeechBubble,
 									this.btnStepLabel,
+                                    this.btnLeftClickIcon,
 									this.toolStripSeparator14,
 									this.btnHighlight,
 									this.btnObfuscate,
@@ -700,6 +706,7 @@ namespace Greenshot.Editor.Forms {
 									this.removeObjectToolStripMenuItem,
 									this.toolStripSeparator7,
 									this.arrangeToolStripMenuItem,
+                                    this.leftClickToolStripMenuItem,
 									this.saveElementsToolStripMenuItem,
 									this.loadElementsToolStripMenuItem});
 			this.objectToolStripMenuItem.LanguageKey = "editor_object";
@@ -762,10 +769,31 @@ namespace Greenshot.Editor.Forms {
             this.addCounterToolStripMenuItem.LanguageKey = "editor_counter";
             this.addCounterToolStripMenuItem.Name = "addCounterToolStripMenuItem";
             this.addCounterToolStripMenuItem.Click += new System.EventHandler(this.AddCounterToolStripMenuItemClick);
-			// 
-			// toolStripSeparator8
-			// 
-			this.toolStripSeparator8.Name = "toolStripSeparator8";
+
+            //
+            //Left Click Icon Button
+            //
+            this.btnLeftClickIcon.CheckOnClick = true;
+            this.btnLeftClickIcon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnLeftClickIcon.Image = ((System.Drawing.Image)(resources.GetObject("Left-Click.Image")));
+            this.btnLeftClickIcon.LanguageKey = "editor_leftClickIcon";
+            this.btnLeftClickIcon.Click += new System.EventHandler(this.BtnLeftClickIcon);
+            this.btnLeftClickIcon.Name = "Left Click Icon";
+
+            //
+            //Left Click Icon ToolStrip
+            //
+            this.leftClickToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("Left-Click.Image")));
+            this.leftClickToolStripMenuItem.LanguageKey = "editor_leftClickIcon";
+            this.leftClickToolStripMenuItem.Name = "leftClickToolStripMenuItem";
+            this.leftClickToolStripMenuItem.Click += new System.EventHandler(this.LeftClickIconToolStripMenuItemClick);
+
+
+
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
 			// 
 			// selectAllToolStripMenuItem
 			// 
@@ -2050,5 +2078,8 @@ namespace Greenshot.Editor.Forms {
 		private System.Windows.Forms.ToolStripDropDownButton zoomStatusDropDownBtn;
 		private System.Windows.Forms.ToolStripMenuItem zoomMainMenuItem;
 		private System.Windows.Forms.ToolStripStatusLabel statusStripSpacer;
+
+        private GreenshotToolStripButton btnLeftClickIcon;
+        private GreenshotToolStripMenuItem leftClickToolStripMenuItem;
 	}
 }

@@ -285,7 +285,7 @@ namespace Greenshot.Editor.Forms
 
             _toolbarButtons = new[]
             {
-                btnCursor, btnRect, btnEllipse, btnText, btnLine, btnArrow, btnFreehand, btnHighlight, btnObfuscate, btnCrop, btnStepLabel, btnSpeechBubble
+                btnCursor, btnRect, btnEllipse, btnText, btnLine, btnArrow, btnFreehand, btnHighlight, btnObfuscate, btnCrop, btnStepLabel, btnSpeechBubble, btnLeftClickIcon
             };
             //toolbarDropDownButtons = new ToolStripDropDownButton[]{btnBlur, btnPixeliate, btnTextHighlighter, btnAreaHighlighter, btnMagnifier};
 
@@ -631,6 +631,9 @@ namespace Greenshot.Editor.Forms
                 case DrawingModes.Path:
                     SetButtonChecked(btnFreehand);
                     break;
+                case DrawingModes.LeftClickIcon:
+                    SetButtonChecked(btnLeftClickIcon);
+                    break;
             }
         }
 
@@ -704,6 +707,12 @@ namespace Greenshot.Editor.Forms
         private void BtnStepLabelClick(object sender, EventArgs e)
         {
             _surface.DrawingMode = DrawingModes.StepLabel;
+            RefreshFieldControls();
+        }
+
+        private void BtnLeftClickIcon(object sender, EventArgs e)
+        {
+            _surface.DrawingMode = DrawingModes.LeftClickIcon;
             RefreshFieldControls();
         }
 
@@ -791,6 +800,11 @@ namespace Greenshot.Editor.Forms
         private void AddCounterToolStripMenuItemClick(object sender, EventArgs e)
         {
             BtnStepLabelClick(sender, e);
+        }
+
+        private void LeftClickIconToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            BtnLeftClickIcon(sender, e);
         }
 
         private void DrawLineToolStripMenuItemClick(object sender, EventArgs e)
