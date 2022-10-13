@@ -775,7 +775,7 @@ namespace Greenshot.Editor.Forms {
             //
             this.btnLeftClickIcon.CheckOnClick = true;
             this.btnLeftClickIcon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnLeftClickIcon.Image = ((System.Drawing.Image)(resources.GetObject("Left-Click.Image")));
+            this.btnLeftClickIcon.Image = ((System.Drawing.Image)(resources.GetObject("Left-Click.png")));
             this.btnLeftClickIcon.LanguageKey = "editor_leftClickIcon";
             this.btnLeftClickIcon.Click += new System.EventHandler(this.BtnLeftClickIcon);
             this.btnLeftClickIcon.Name = "Left Click Icon";
@@ -783,7 +783,7 @@ namespace Greenshot.Editor.Forms {
             //
             //Left Click Icon ToolStrip
             //
-            this.leftClickToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("Left-Click.Image")));
+            this.leftClickToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("Left-Click.png")));
             this.leftClickToolStripMenuItem.LanguageKey = "editor_leftClickIcon";
             this.leftClickToolStripMenuItem.Name = "leftClickToolStripMenuItem";
             this.leftClickToolStripMenuItem.Click += new System.EventHandler(this.LeftClickIconToolStripMenuItemClick);
