@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29728.190
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Greenshot", "Greenshot\Greenshot.csproj", "{CD642BF4-D815-4D67-A0B5-C69F0B8231AF}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -51,6 +51,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Greenshot.Editor", "Greenshot.Editor\Greenshot.Editor.csproj", "{148D3C8B-D6EC-4A7D-80E9-243A81F19DD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feature-1380 Tests", "Feature-1380 Tests\Feature-1380 Tests.csproj", "{793D1289-5657-4D23-9167-28C0473582BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -172,6 +174,14 @@ Global
 		{148D3C8B-D6EC-4A7D-80E9-243A81F19DD2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{148D3C8B-D6EC-4A7D-80E9-243A81F19DD2}.Release|x86.ActiveCfg = Release|Any CPU
 		{148D3C8B-D6EC-4A7D-80E9-243A81F19DD2}.Release|x86.Build.0 = Release|Any CPU
+		{793D1289-5657-4D23-9167-28C0473582BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{793D1289-5657-4D23-9167-28C0473582BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{793D1289-5657-4D23-9167-28C0473582BB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{793D1289-5657-4D23-9167-28C0473582BB}.Debug|x86.Build.0 = Debug|Any CPU
+		{793D1289-5657-4D23-9167-28C0473582BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{793D1289-5657-4D23-9167-28C0473582BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{793D1289-5657-4D23-9167-28C0473582BB}.Release|x86.ActiveCfg = Release|Any CPU
+		{793D1289-5657-4D23-9167-28C0473582BB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
