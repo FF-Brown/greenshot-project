@@ -114,7 +114,7 @@ namespace Greenshot.Editor.Test
         public void GetExpansionFromSize_Left(int width, int height)
         {
             var expansion = DrawableContainerList.GetExpansionFromSize(Direction.LEFT, new Size(width, height));
-            Assert.That(expansion.Left, Is.EqualTo(width));
+            Assert.That(expansion.Left, Is.EqualTo(width - 1));
             Assert.That(expansion.Right, Is.Zero);
             Assert.That(expansion.Top, Is.Zero);
             Assert.That(expansion.Bottom, Is.Zero);
@@ -129,7 +129,7 @@ namespace Greenshot.Editor.Test
         {
             var expansion = DrawableContainerList.GetExpansionFromSize(Direction.RIGHT, new Size(width, height));
             Assert.That(expansion.Left, Is.Zero);
-            Assert.That(expansion.Right, Is.EqualTo(width));
+            Assert.That(expansion.Right, Is.EqualTo(width - 1));
             Assert.That(expansion.Top, Is.Zero);
             Assert.That(expansion.Bottom, Is.Zero);
         }
@@ -144,7 +144,7 @@ namespace Greenshot.Editor.Test
             var expansion = DrawableContainerList.GetExpansionFromSize(Direction.TOP, new Size(width, height));
             Assert.That(expansion.Left, Is.Zero);
             Assert.That(expansion.Right, Is.Zero);
-            Assert.That(expansion.Top, Is.EqualTo(height));
+            Assert.That(expansion.Top, Is.EqualTo(height - 1));
             Assert.That(expansion.Bottom, Is.Zero);
         }
 
@@ -159,7 +159,7 @@ namespace Greenshot.Editor.Test
             Assert.That(expansion.Left, Is.Zero);
             Assert.That(expansion.Right, Is.Zero);
             Assert.That(expansion.Top, Is.Zero);
-            Assert.That(expansion.Bottom, Is.EqualTo(height));
+            Assert.That(expansion.Bottom, Is.EqualTo(height - 1));
         }
     }
 }
