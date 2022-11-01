@@ -106,6 +106,60 @@ namespace Greenshot.Editor.Test
             Assert.That(newBounds.Bottom, Is.EqualTo(surfaceHeight));
         }
 
+        [Test]
+        [TestCase(0, 0)]
+        [TestCase(10, 0)]
+        [TestCase(0, 10)]
+        [TestCase(10, 10)]
+        public void GetExpansionFromSize_Left(int width, int height)
+        {
+            var expansion = DrawableContainerList.GetExpansionFromSize(Direction.LEFT, new Size(width, height));
+            Assert.That(expansion.Left, Is.EqualTo(width));
+            Assert.That(expansion.Right, Is.Zero);
+            Assert.That(expansion.Top, Is.Zero);
+            Assert.That(expansion.Bottom, Is.Zero);
+        }
 
+        [Test]
+        [TestCase(0, 0)]
+        [TestCase(10, 0)]
+        [TestCase(0, 10)]
+        [TestCase(10, 10)]
+        public void GetExpansionFromSize_Right(int width, int height)
+        {
+            var expansion = DrawableContainerList.GetExpansionFromSize(Direction.RIGHT, new Size(width, height));
+            Assert.That(expansion.Left, Is.Zero);
+            Assert.That(expansion.Right, Is.EqualTo(width));
+            Assert.That(expansion.Top, Is.Zero);
+            Assert.That(expansion.Bottom, Is.Zero);
+        }
+
+        [Test]
+        [TestCase(0, 0)]
+        [TestCase(10, 0)]
+        [TestCase(0, 10)]
+        [TestCase(10, 10)]
+        public void GetExpansionFromSize_Top(int width, int height)
+        {
+            var expansion = DrawableContainerList.GetExpansionFromSize(Direction.TOP, new Size(width, height));
+            Assert.That(expansion.Left, Is.Zero);
+            Assert.That(expansion.Right, Is.Zero);
+            Assert.That(expansion.Top, Is.EqualTo(height));
+            Assert.That(expansion.Bottom, Is.Zero);
+        }
+
+        [Test]
+        [TestCase(0, 0)]
+        [TestCase(10, 0)]
+        [TestCase(0, 10)]
+        [TestCase(10, 10)]
+        public void GetExpansionFromSize_Bottom(int width, int height)
+        {
+            var expansion = DrawableContainerList.GetExpansionFromSize(Direction.BOTTOM, new Size(width, height));
+            Assert.That(expansion.Left, Is.Zero);
+            Assert.That(expansion.Right, Is.Zero);
+            Assert.That(expansion.Top, Is.Zero);
+            Assert.That(expansion.Bottom, Is.EqualTo(height));
+        }
     }
 }
