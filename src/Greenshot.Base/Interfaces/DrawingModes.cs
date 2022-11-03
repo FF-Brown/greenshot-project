@@ -37,5 +37,6 @@ namespace Greenshot.Base.Interfaces
         SpeechBubble,
         StepLabel,
         LeftClickIcon,
+        RightClickIcon,
     }
 }
