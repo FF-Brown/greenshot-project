@@ -1075,6 +1075,10 @@ namespace Greenshot.Editor.Forms
                     case Keys.D9: // Ctrl + 9
                         ZoomBestFitMenuItemClick(sender, e);
                         break;
+                    case Keys.Home: // About Ctrl + Home
+                    case Keys.BrowserHome:
+                        AboutToolStripMenuItemClick(sender, e);
+                        break;
                 }
             }
             else if (e.Modifiers.Equals(Keys.Control | Keys.Shift))
@@ -1088,6 +1092,10 @@ namespace Greenshot.Editor.Forms
                     case Keys.Subtract: // Ctrl + Shift + Num-
                     case Keys.OemMinus: // Ctrl + Shift + -
                         ShrinkCanvasToolStripMenuItemClick(sender, e);
+                        break;
+                    case Keys.Home:
+                    case Keys.BrowserHome:
+                        System.Diagnostics.Process.Start("https://getgreenshot.org/tickets/");
                         break;
                 }
             }

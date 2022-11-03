@@ -870,7 +870,8 @@ namespace Greenshot.Editor.Forms {
 			// 
 			this.aboutToolStripMenuItem.LanguageKey = "contextmenu_about";
 			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-			this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItemClick);
+            this.aboutToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl+Home";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItemClick);
 			// 
 			// destinationsToolStrip
 			// 
