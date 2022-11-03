@@ -1059,14 +1059,6 @@ namespace Greenshot.Editor.Forms
                     case Keys.OemPeriod: // Rotate CW Ctrl + .
                         RotateCwToolstripButtonClick(sender, e);
                         break;
-                    case Keys.Add: // Ctrl + Num+
-                    case Keys.Oemplus: // Ctrl + +
-                        ZoomInMenuItemClick(sender, e);
-                        break;
-                    case Keys.Subtract: // Ctrl + Num-
-                    case Keys.OemMinus: // Ctrl + -
-                        ZoomOutMenuItemClick(sender, e);
-                        break;
                     case Keys.NumPad0: // Ctrl + Num0
                     case Keys.D0: // Ctrl + 0
                         ZoomSetValueMenuItemClick(zoomActualSizeMenuItem, e);
@@ -1087,6 +1079,20 @@ namespace Greenshot.Editor.Forms
                         break;
                     case Keys.Subtract: // Ctrl + Shift + Num-
                     case Keys.OemMinus: // Ctrl + Shift + -
+                        ShrinkCanvasToolStripMenuItemClick(sender, e);
+                        break;
+                }
+            }
+            else if (e.Modifiers.Equals(Keys.Alt))
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Add: // Alt + Num+
+                    case Keys.Oemplus: // Alt + +
+                        EnlargeCanvasToolStripMenuItemClick(sender, e);
+                        break;
+                    case Keys.Subtract: // Alt + Num-
+                    case Keys.OemMinus: // Alt + -
                         ShrinkCanvasToolStripMenuItemClick(sender, e);
                         break;
                 }
