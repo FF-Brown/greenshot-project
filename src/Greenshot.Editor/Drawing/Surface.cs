@@ -794,6 +794,9 @@ namespace Greenshot.Editor.Drawing
                 case DrawingModes.LeftClickIcon:
                     _undrawnElement = new LeftClickIcon(this);
                     break;
+                case DrawingModes.RightClickIcon:
+                    _undrawnElement = new RightClickIcon(this);
+                    break;
             }
 
             if (_undrawnElement != null)

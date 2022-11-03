@@ -221,7 +221,9 @@ namespace Greenshot.Editor.Forms {
 
             this.btnLeftClickIcon = new GreenshotToolStripButton();
             this.leftClickToolStripMenuItem = new GreenshotToolStripMenuItem();
-         
+
+            this.btnRightClickIcon = new GreenshotToolStripButton();
+            this.rightClickToolStripMenuItem = new GreenshotToolStripMenuItem();
 
 			this.topToolStripContainer.BottomToolStripPanel.SuspendLayout();
 			this.topToolStripContainer.ContentPanel.SuspendLayout();
@@ -342,6 +344,7 @@ namespace Greenshot.Editor.Forms {
 									this.btnSpeechBubble,
 									this.btnStepLabel,
                                     this.btnLeftClickIcon,
+                                    this.btnRightClickIcon,
 									this.toolStripSeparator14,
 									this.btnHighlight,
 									this.btnObfuscate,
@@ -707,6 +710,7 @@ namespace Greenshot.Editor.Forms {
 									this.toolStripSeparator7,
 									this.arrangeToolStripMenuItem,
                                     this.leftClickToolStripMenuItem,
+                                    this.rightClickToolStripMenuItem,
 									this.saveElementsToolStripMenuItem,
 									this.loadElementsToolStripMenuItem});
 			this.objectToolStripMenuItem.LanguageKey = "editor_object";
@@ -788,6 +792,23 @@ namespace Greenshot.Editor.Forms {
             this.leftClickToolStripMenuItem.Name = "leftClickToolStripMenuItem";
             this.leftClickToolStripMenuItem.Click += new System.EventHandler(this.LeftClickIconToolStripMenuItemClick);
 
+            //
+            //Right Click Icon Button
+            //
+            this.btnRightClickIcon.CheckOnClick = true;
+            this.btnRightClickIcon.Image = ((System.Drawing.Image)(resources.GetObject("Right-Click.png")));
+            this.btnRightClickIcon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnRightClickIcon.LanguageKey = "editor_rightClickIcon";
+            this.btnRightClickIcon.Click += new System.EventHandler(this.BtnLeftClickIcon);
+            this.btnRightClickIcon.Name = "Right Click Icon";
+
+            //
+            //Right Click Icon ToolStrip
+            //
+            this.rightClickToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("Right-Click.png")));
+            this.rightClickToolStripMenuItem.LanguageKey = "editor_rightClickIcon";
+            this.rightClickToolStripMenuItem.Name = "rightClickToolStripMenuItem";
+            this.rightClickToolStripMenuItem.Click += new System.EventHandler(this.RightClickIconToolStripMenuItemClick);
 
 
             // 
@@ -2081,5 +2102,10 @@ namespace Greenshot.Editor.Forms {
 
         private GreenshotToolStripButton btnLeftClickIcon;
         private GreenshotToolStripMenuItem leftClickToolStripMenuItem;
-	}
+
+        private GreenshotToolStripButton btnRightClickIcon;
+        private GreenshotToolStripMenuItem rightClickToolStripMenuItem;
+
+
+    }
 }
