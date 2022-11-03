@@ -1724,7 +1724,7 @@ namespace Greenshot.Editor.Forms {
 			// 
 			this.zoomInMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("zoomInMenuItem.Image")));
 			this.zoomInMenuItem.Name = "zoomInMenuItem";
-			this.zoomInMenuItem.ShortcutKeyDisplayString = "Ctrl++";
+			this.zoomInMenuItem.ShortcutKeyDisplayString = "Alt++";
 			this.zoomInMenuItem.Size = new System.Drawing.Size(209, 22);
 			this.zoomInMenuItem.Text = "Zoom In";
 			this.zoomInMenuItem.Click += new System.EventHandler(this.ZoomInMenuItemClick);
@@ -1733,7 +1733,7 @@ namespace Greenshot.Editor.Forms {
 			// 
 			this.zoomOutMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("zoomOutMenuItem.Image")));
 			this.zoomOutMenuItem.Name = "zoomOutMenuItem";
-			this.zoomOutMenuItem.ShortcutKeyDisplayString = "Ctrl+-";
+			this.zoomOutMenuItem.ShortcutKeyDisplayString = "Alt+-";
 			this.zoomOutMenuItem.Size = new System.Drawing.Size(209, 22);
 			this.zoomOutMenuItem.Text = "Zoom Out";
 			this.zoomOutMenuItem.Click += new System.EventHandler(this.ZoomOutMenuItemClick);
