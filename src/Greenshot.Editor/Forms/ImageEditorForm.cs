@@ -1089,11 +1089,11 @@ namespace Greenshot.Editor.Forms
                 {
                     case Keys.Add: // Alt + Num+
                     case Keys.Oemplus: // Alt + +
-                        EnlargeCanvasToolStripMenuItemClick(sender, e);
+                        ZoomInMenuItemClick(sender, e);
                         break;
                     case Keys.Subtract: // Alt + Num-
                     case Keys.OemMinus: // Alt + -
-                        ShrinkCanvasToolStripMenuItemClick(sender, e);
+                        ZoomOutMenuItemClick(sender, e);
                         break;
                 }
             }
