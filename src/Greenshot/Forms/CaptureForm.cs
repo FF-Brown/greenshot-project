@@ -248,12 +248,50 @@ namespace Greenshot.Forms
             }
         }
 
+        private void ExitCapture()
+        {
+            DialogResult = DialogResult.Cancel;
+        }
+
+        private void toggleSpace(CaptureMode _captureMode)
+        {
+            switch (_captureMode)
+            {
+                case CaptureMode.Region:
+                    // Set the window capture mode
+                    _captureMode = CaptureMode.Window;
+                    // "Fade out" Zoom
+                    InitializeZoomer(false);
+                    // "Fade in" window
+                    _windowAnimator = new RectangleAnimator(new NativeRect(_cursorPos, NativeSize.Empty), _captureRect, FramesForMillis(700), EasingType.Quintic, EasingMode.EaseOut);
+                    _captureRect = NativeRect.Empty;
+                    Invalidate();
+                    break;
+                case CaptureMode.Text:
+                    // Set the region capture mode
+                    _captureMode = CaptureMode.Region;
+                    Invalidate();
+                    break;
+                case CaptureMode.Window:
+                    // Set the region capture mode
+                    _captureMode = CaptureMode.Region;
+                    // "Fade out" window
+                    _windowAnimator.ChangeDestination(new NativeRect(_cursorPos, NativeSize.Empty), FramesForMillis(700));
+                    // Fade in zoom
+                    InitializeZoomer(Conf.ZoomerEnabled);
+                    _captureRect = NativeRect.Empty;
+                    Invalidate();
+                    break;
+            }
+
+        }
+
         /// <summary>
         /// Handle the key down event
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CaptureFormKeyDown(object sender, KeyEventArgs e)
+        private void CaptureFormKeyDown (object sender, KeyEventArgs e)
         {
             int step = _isCtrlPressed ? 10 : 1;
 
@@ -284,7 +322,7 @@ namespace Greenshot.Forms
                     break;
                 case Keys.Escape:
                     // Cancel
-                    DialogResult = DialogResult.Cancel;
+                    ExitCapture();
                     break;
                 case Keys.M:
                     // Toggle mouse cursor
@@ -312,34 +350,7 @@ namespace Greenshot.Forms
                     break;
                 case Keys.Space:
                     // Toggle capture mode
-                    switch (_captureMode)
-                    {
-                        case CaptureMode.Region:
-                            // Set the window capture mode
-                            _captureMode = CaptureMode.Window;
-                            // "Fade out" Zoom
-                            InitializeZoomer(false);
-                            // "Fade in" window
-                            _windowAnimator = new RectangleAnimator(new NativeRect(_cursorPos, NativeSize.Empty), _captureRect, FramesForMillis(700), EasingType.Quintic, EasingMode.EaseOut);
-                            _captureRect = NativeRect.Empty;
-                            Invalidate();
-                            break;
-                        case CaptureMode.Text:
-                            // Set the region capture mode
-                            _captureMode = CaptureMode.Region;
-                            Invalidate();
-                            break;
-                        case CaptureMode.Window:
-                            // Set the region capture mode
-                            _captureMode = CaptureMode.Region;
-                            // "Fade out" window
-                            _windowAnimator.ChangeDestination(new NativeRect(_cursorPos, NativeSize.Empty), FramesForMillis(700));
-                            // Fade in zoom
-                            InitializeZoomer(Conf.ZoomerEnabled);
-                            _captureRect = NativeRect.Empty;
-                            Invalidate();
-                            break;
-                    }
+                   toggleSpace(_captureMode);
 
                     _selectedCaptureWindow = null;
                     OnMouseMove(this, new MouseEventArgs(MouseButtons.None, 0, Cursor.Position.X, Cursor.Position.Y, 0));
@@ -402,8 +413,8 @@ namespace Greenshot.Forms
             }
 
             if (e.Button == MouseButtons.Right)
-            {
-                DialogResult = DialogResult.Cancel;
+            { 
+                ExitCapture();
             }
         }
 
