@@ -286,6 +286,7 @@ namespace Greenshot.Forms
 
         }
 
+
         /// <summary>
         /// Handle the key down event
         /// </summary>
@@ -350,8 +351,7 @@ namespace Greenshot.Forms
                     break;
                 case Keys.Space:
                     // Toggle capture mode
-                   toggleSpace(_captureMode);
-
+                    toggleSpace(_captureMode);
                     _selectedCaptureWindow = null;
                     OnMouseMove(this, new MouseEventArgs(MouseButtons.None, 0, Cursor.Position.X, Cursor.Position.Y, 0));
                     break;
