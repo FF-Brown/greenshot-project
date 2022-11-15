@@ -253,7 +253,7 @@ namespace Greenshot.Forms
             DialogResult = DialogResult.Cancel;
         }
 
-        private void toggleSpace(CaptureMode _captureMode)
+        private void ToggleSpace(CaptureMode _captureMode)
         {
             switch (_captureMode)
             {
@@ -286,7 +286,7 @@ namespace Greenshot.Forms
 
         }
 
-        private void toggleCaptureForm(int step, KeyEventArgs e)
+        private void ToggleCaptureForm(int step, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -343,7 +343,7 @@ namespace Greenshot.Forms
                     break;
                 case Keys.Space:
                     // Toggle capture mode
-                    toggleSpace(_captureMode);
+                    ToggleSpace(_captureMode);
                     _selectedCaptureWindow = null;
                     OnMouseMove(this, new MouseEventArgs(MouseButtons.None, 0, Cursor.Position.X, Cursor.Position.Y, 0));
                     break;
@@ -402,7 +402,7 @@ namespace Greenshot.Forms
         {
             int step = _isCtrlPressed ? 10 : 1;
 
-            toggleCaptureForm(step, e);
+            ToggleCaptureForm(step, e);
         }
 
         /// <summary>
