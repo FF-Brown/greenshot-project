@@ -923,18 +923,29 @@ namespace Greenshot.Forms
             int padding = pixelThickness;
 
             // Pen to draw
+            DrawPen(graphics, destinationRectangle, opacyBlack, pixelThickness, drawAtWidth, padding, halfHeightEnd, drawAtHeight, halfWidthEnd, opacyWhite);
+
+            attributes?.Dispose();
+        }
+
+        private static void DrawPen(Graphics graphics, NativeRect destinationRectangle, Color opacyBlack, int pixelThickness,
+            int drawAtWidth, int padding, int halfHeightEnd, int drawAtHeight, int halfWidthEnd, Color opacyWhite)
+        {
             using (Pen pen = new Pen(opacyBlack, pixelThickness))
             {
                 // Draw the cross-hair-lines
                 // Vertical top to middle
-                graphics.DrawLine(pen, drawAtWidth, destinationRectangle.Y + padding, drawAtWidth, destinationRectangle.Y + halfHeightEnd - padding);
+                graphics.DrawLine(pen, drawAtWidth, destinationRectangle.Y + padding, drawAtWidth,
+                    destinationRectangle.Y + halfHeightEnd - padding);
                 // Vertical middle + 1 to bottom
                 graphics.DrawLine(pen, drawAtWidth, destinationRectangle.Y + halfHeightEnd + 2 * padding, drawAtWidth,
                     destinationRectangle.Y + destinationRectangle.Width - padding);
                 // Horizontal left to middle
-                graphics.DrawLine(pen, destinationRectangle.X + padding, drawAtHeight, destinationRectangle.X + halfWidthEnd - padding, drawAtHeight);
+                graphics.DrawLine(pen, destinationRectangle.X + padding, drawAtHeight,
+                    destinationRectangle.X + halfWidthEnd - padding, drawAtHeight);
                 // Horizontal middle + 1 to right
-                graphics.DrawLine(pen, destinationRectangle.X + halfWidthEnd + 2 * padding, drawAtHeight, destinationRectangle.X + destinationRectangle.Width - padding,
+                graphics.DrawLine(pen, destinationRectangle.X + halfWidthEnd + 2 * padding, drawAtHeight,
+                    destinationRectangle.X + destinationRectangle.Width - padding,
                     drawAtHeight);
 
                 // Fix offset for drawing the white rectangle around the cross-hair-lines
@@ -946,16 +957,18 @@ namespace Greenshot.Forms
                 pen.Color = opacyWhite;
                 pen.Width = 1;
                 // Vertical top to middle
-                graphics.DrawRectangle(pen, drawAtWidth, destinationRectangle.Y + padding, pixelThickness, halfHeightEnd - 2 * padding - 1);
+                graphics.DrawRectangle(pen, drawAtWidth, destinationRectangle.Y + padding, pixelThickness,
+                    halfHeightEnd - 2 * padding - 1);
                 // Vertical middle + 1 to bottom
-                graphics.DrawRectangle(pen, drawAtWidth, destinationRectangle.Y + halfHeightEnd + 2 * padding, pixelThickness, halfHeightEnd - 2 * padding - 1);
+                graphics.DrawRectangle(pen, drawAtWidth, destinationRectangle.Y + halfHeightEnd + 2 * padding, pixelThickness,
+                    halfHeightEnd - 2 * padding - 1);
                 // Horizontal left to middle
-                graphics.DrawRectangle(pen, destinationRectangle.X + padding, drawAtHeight, halfWidthEnd - 2 * padding - 1, pixelThickness);
+                graphics.DrawRectangle(pen, destinationRectangle.X + padding, drawAtHeight, halfWidthEnd - 2 * padding - 1,
+                    pixelThickness);
                 // Horizontal middle + 1 to right
-                graphics.DrawRectangle(pen, destinationRectangle.X + halfWidthEnd + 2 * padding, drawAtHeight, halfWidthEnd - 2 * padding - 1, pixelThickness);
+                graphics.DrawRectangle(pen, destinationRectangle.X + halfWidthEnd + 2 * padding, drawAtHeight,
+                    halfWidthEnd - 2 * padding - 1, pixelThickness);
             }
-
-            attributes?.Dispose();
         }
 
         /// <summary>
