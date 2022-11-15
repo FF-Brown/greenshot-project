@@ -1187,9 +1187,15 @@ namespace Greenshot.Forms
             }
 
             // Zoom
+            CreateZoom(graphics);
+        }
+
+        private void CreateZoom(Graphics graphics)
+        {
             if (_zoomAnimator != null && (IsAnimating(_zoomAnimator) || _captureMode != CaptureMode.Window))
             {
-                var sourceRectangle = new NativeRect(_cursorPos.X - zoomWidth / 2, _cursorPos.Y - zoomHeight  / 2, zoomWidth, zoomHeight );
+                var sourceRectangle = new NativeRect(_cursorPos.X - zoomWidth / 2, _cursorPos.Y - zoomHeight / 2, zoomWidth,
+                    zoomHeight);
 
                 var destinationRectangle = _zoomAnimator.Current;
                 destinationRectangle = destinationRectangle.Offset(_cursorPos);
