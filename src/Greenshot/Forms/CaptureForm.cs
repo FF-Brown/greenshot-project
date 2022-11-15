@@ -286,16 +286,8 @@ namespace Greenshot.Forms
 
         }
 
-
-        /// <summary>
-        /// Handle the key down event
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CaptureFormKeyDown (object sender, KeyEventArgs e)
+        private void toggleCaptureForm(int step, KeyEventArgs e)
         {
-            int step = _isCtrlPressed ? 10 : 1;
-
             switch (e.KeyCode)
             {
                 case Keys.Up:
@@ -398,6 +390,19 @@ namespace Greenshot.Forms
 
                     break;
             }
+        }
+
+
+        /// <summary>
+        /// Handle the key down event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CaptureFormKeyDown (object sender, KeyEventArgs e)
+        {
+            int step = _isCtrlPressed ? 10 : 1;
+
+            toggleCaptureForm(step, e);
         }
 
         /// <summary>

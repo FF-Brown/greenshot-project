@@ -65,10 +65,9 @@ namespace Greenshot.Forms {
 			this.ShowInTaskbar = false;
 			this.TopMost = true;
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CaptureFormKeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CaptureFormKeyUp);
+			this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CaptureFormKeyUp);
 			this.Visible = false;
 			this.ResumeLayout(false);
-
 		}
 	}
 }
