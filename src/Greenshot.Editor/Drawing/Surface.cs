@@ -749,6 +749,16 @@ namespace Greenshot.Editor.Drawing
                 FieldAggregator.UnbindElement(_undrawnElement);
             }
 
+            DrawModeCases();
+
+            if (_undrawnElement != null)
+            {
+                FieldAggregator.BindElement(_undrawnElement);
+            }
+        }
+
+        private void DrawModeCases()
+        {
             switch (DrawingMode)
             {
                 case DrawingModes.Rect:
@@ -797,11 +807,6 @@ namespace Greenshot.Editor.Drawing
                 case DrawingModes.RightClickIcon:
                     _undrawnElement = new RightClickIcon(this);
                     break;
-            }
-
-            if (_undrawnElement != null)
-            {
-                FieldAggregator.BindElement(_undrawnElement);
             }
         }
 
