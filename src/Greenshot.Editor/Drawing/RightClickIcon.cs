@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using Dapplo.Windows.Common.Extensions;
 using Dapplo.Windows.Common.Structs;
@@ -8,15 +9,14 @@ using Greenshot.Base.Interfaces.Drawing;
 
 namespace Greenshot.Editor.Drawing
 {
-    public class RightClickIcon : RectangleContainer
+    public class RightClickIcon : AbstractClickIcon
     {
-        private readonly Color lineColor = Color.Black;
-        private readonly Color fillColor = Color.Black;
-        private readonly int lineThickness = 0;
-        private readonly bool shadow = false;
-
         public RightClickIcon(ISurface parent) : base(parent)
         {
+            lineColor = Color.Black;
+            fillColor = Color.Black;
+            lineThickness = 0;
+            shadow = false;
             Init();
         }
 
@@ -32,7 +32,9 @@ namespace Greenshot.Editor.Drawing
 
         private void Init()
         {
+
             CreateDefaultAdorners();
+
         }
 
         protected override void InitializeFields()
