@@ -8,15 +8,14 @@ using Greenshot.Base.Interfaces.Drawing;
 
 namespace Greenshot.Editor.Drawing
 {
-    public class LeftClickIcon : RectangleContainer
+    public class LeftClickIcon : AbstractClickIcon
     {
-        private readonly Color lineColor = Color.Black;
-        private readonly Color fillColor = Color.Black;
-        private readonly int lineThickness = 0;
-        private readonly bool shadow = false;
-
         public LeftClickIcon(ISurface parent) : base(parent)
         {
+            lineColor = Color.Black;
+            fillColor = Color.Black;
+            lineThickness = 0;
+            shadow = false;
             Init();
         }
 
@@ -32,7 +31,9 @@ namespace Greenshot.Editor.Drawing
 
         private void Init()
         {
+
             CreateDefaultAdorners();
+
         }
 
         protected override void InitializeFields()
