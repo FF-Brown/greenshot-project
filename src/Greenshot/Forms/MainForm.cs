@@ -814,12 +814,9 @@ namespace Greenshot.Forms
                 success = false;
             }
 
-            if (_conf.IECapture)
+            if (_conf.IECapture && !RegisterWrapper(failedKeys, "CaptureIE", "IEHotkey", _instance.CaptureIE, ignoreFailedRegistration))
             {
-                if (!RegisterWrapper(failedKeys, "CaptureIE", "IEHotkey", _instance.CaptureIE, ignoreFailedRegistration))
-                {
-                    success = false;
-                }
+                success = false;
             }
 
             if (!success)
