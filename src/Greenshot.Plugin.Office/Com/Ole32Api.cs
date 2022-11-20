@@ -35,6 +35,6 @@ namespace Greenshot.Plugin.Office.Com
         /// <param name="clsId">Guid</param>
         /// <returns>HResult</returns>
         [DllImport("ole32.dll", ExactSpelling = true)]
-        private static extern HResult CLSIDFromProgID([In] [MarshalAs(UnmanagedType.LPWStr)] string progId, [Out] out Guid clsId);
+        private static extern HResult CLSIDFromProgID([In][MarshalAs(UnmanagedType.LPWStr)] string progId, [Out] out Guid clsId);
     }
 }

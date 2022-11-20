@@ -1139,7 +1139,7 @@ namespace Greenshot.Editor.Drawing
             }
 
             // special condition for vertical 
-            if(cropMode == CropContainer.CropModes.Vertical && cropRectangle.Width == Image.Width)
+            if (cropMode == CropContainer.CropModes.Vertical && cropRectangle.Width == Image.Width)
             {
                 //crop out the hole image is not allowed
                 return false;
@@ -1367,13 +1367,13 @@ namespace Greenshot.Editor.Drawing
                 var insertPositionLeft = 0;
                 if (leftRectangle.Width > 0)
                 {
-                    graphics.DrawImage(Image, new NativeRect(insertPositionLeft, 0, leftRectangle.Width, leftRectangle.Height), leftRectangle , GraphicsUnit.Pixel);
+                    graphics.DrawImage(Image, new NativeRect(insertPositionLeft, 0, leftRectangle.Width, leftRectangle.Height), leftRectangle, GraphicsUnit.Pixel);
                     insertPositionLeft += leftRectangle.Width;
                 }
-                
+
                 if (rightRectangle.Width > 0)
                 {
-                    graphics.DrawImage(Image, new NativeRect(insertPositionLeft, 0, rightRectangle.Width, rightRectangle.Height), rightRectangle,  GraphicsUnit.Pixel);
+                    graphics.DrawImage(Image, new NativeRect(insertPositionLeft, 0, rightRectangle.Width, rightRectangle.Height), rightRectangle, GraphicsUnit.Pixel);
                 }
             }
             catch (Exception ex)
@@ -1432,7 +1432,7 @@ namespace Greenshot.Editor.Drawing
                 foreach (IAdorner adorner in drawableContainer.Adorners)
                 {
                     if (!adorner.IsActive && !adorner.HitTest(mouseEventArgs.Location)) continue;
-                    
+
                     if (adorner.Cursor != null)
                     {
                         Cursor = adorner.Cursor;
@@ -2155,8 +2155,8 @@ namespace Greenshot.Editor.Drawing
             // create new collection so that we can iterate safely (selectedElements might change due with confirm/cancel)
             List<IDrawableContainer> selectedDCs = new List<IDrawableContainer>(selectedElements);
             foreach (IDrawableContainer dc in selectedDCs.Where(c => c.IsConfirmable))
-            {                
-                throw new NotImplementedException($"No confirm/cancel defined for Container type {dc.GetType()}");               
+            {
+                throw new NotImplementedException($"No confirm/cancel defined for Container type {dc.GetType()}");
             }
 
             // maybe the undo button has to be enabled
@@ -2171,7 +2171,7 @@ namespace Greenshot.Editor.Drawing
         public void ConfirmCrop(bool confirm)
         {
             if (_cropContainer is not CropContainer e) return;
-                    
+
             if (confirm && selectedElements.Count > 0)
             {
                 // No undo memento for the cropcontainer itself, only for the effect
@@ -2635,31 +2635,31 @@ namespace Greenshot.Editor.Drawing
         // for laptops without numPads, also allow shift modifier
         private void SetSelectedElementColor(Color color, bool numPad, bool shift)
         {
-	        if (numPad || shift)
-	        {
-		        selectedElements.SetForegroundColor(color);
-				UpdateForegroundColorEvent(this, color);
-	        }
-	        else
-	        {
-		        selectedElements.SetBackgroundColor(color);
-				UpdateBackgroundColorEvent(this, color);
-	        }
-	        selectedElements.Invalidate();
+            if (numPad || shift)
+            {
+                selectedElements.SetForegroundColor(color);
+                UpdateForegroundColorEvent(this, color);
+            }
+            else
+            {
+                selectedElements.SetBackgroundColor(color);
+                UpdateBackgroundColorEvent(this, color);
+            }
+            selectedElements.Invalidate();
         }
 
         private void ChangeLineThickness(int increaseBy)
         {
-		    var newThickness = selectedElements.IncreaseLineThickness(increaseBy);
-		    UpdateLineThicknessEvent(this, newThickness);
-	        selectedElements.Invalidate();
+            var newThickness = selectedElements.IncreaseLineThickness(increaseBy);
+            UpdateLineThicknessEvent(this, newThickness);
+            selectedElements.Invalidate();
         }
 
         private void FlipShadow()
         {
-		    var shadow = selectedElements.FlipShadow();
-		    UpdateShadowEvent(this, shadow);
-	        selectedElements.Invalidate();
+            var shadow = selectedElements.FlipShadow();
+            UpdateShadowEvent(this, shadow);
+            selectedElements.Invalidate();
         }
 
         /// <summary>

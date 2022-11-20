@@ -27,8 +27,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
-using Windows.Storage;
-using Windows.Storage.Streams;
 using Dapplo.Windows.Desktop;
 using Dapplo.Windows.Enums;
 using Dapplo.Windows.User32;
@@ -38,6 +36,8 @@ using Greenshot.Base.Interfaces;
 using Greenshot.Base.Interfaces.Plugin;
 using Greenshot.Plugin.Win10.Internal;
 using Greenshot.Plugin.Win10.Native;
+using Windows.Storage;
+using Windows.Storage.Streams;
 using Color = Windows.UI.Color;
 
 namespace Greenshot.Plugin.Win10.Destinations

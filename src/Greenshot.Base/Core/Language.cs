@@ -571,7 +571,7 @@ namespace Greenshot.Base.Core
             }
             return null;
         }
-        
+
         /// <summary>
         /// Check if a resource with prefix.key exists
         /// </summary>

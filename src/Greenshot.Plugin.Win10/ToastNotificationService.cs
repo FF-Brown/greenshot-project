@@ -22,14 +22,14 @@
 using System;
 using System.Drawing.Imaging;
 using System.IO;
-using Windows.Foundation.Collections;
-using Windows.Foundation.Metadata;
-using Windows.UI.Notifications;
 using Greenshot.Base.Core;
 using Greenshot.Base.IniFile;
 using Greenshot.Base.Interfaces;
 using log4net;
 using Microsoft.Toolkit.Uwp.Notifications;
+using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
+using Windows.UI.Notifications;
 
 namespace Greenshot.Plugin.Win10
 {
@@ -122,8 +122,8 @@ namespace Greenshot.Plugin.Win10
                     //.AddAppLogoOverride(new Uri($@"file://{_imageFilePath}"), ToastGenericAppLogoCrop.None)
                     .Show(toast =>
                     {
-                    // Windows 10 first with 1903: ExpiresOnReboot = true
-                    toast.ExpirationTime = timeout.HasValue ? DateTimeOffset.Now.Add(timeout.Value) : (DateTimeOffset?)null;
+                        // Windows 10 first with 1903: ExpiresOnReboot = true
+                        toast.ExpirationTime = timeout.HasValue ? DateTimeOffset.Now.Add(timeout.Value) : (DateTimeOffset?)null;
 
                         void ToastActivatedHandler(ToastNotification toastNotification, object sender)
                         {
@@ -162,8 +162,8 @@ namespace Greenshot.Plugin.Win10
                             }
 
                             toast.Dismissed -= ToastDismissedHandler;
-                        // Remove the other handler too
-                        toast.Activated -= ToastActivatedHandler;
+                            // Remove the other handler too
+                            toast.Activated -= ToastActivatedHandler;
                             toast.Failed -= ToastOnFailed;
                         }
 

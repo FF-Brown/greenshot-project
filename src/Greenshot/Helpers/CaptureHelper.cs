@@ -19,7 +19,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using log4net;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -42,6 +41,7 @@ using Greenshot.Configuration;
 using Greenshot.Editor.Destinations;
 using Greenshot.Editor.Drawing;
 using Greenshot.Forms;
+using log4net;
 
 namespace Greenshot.Helpers
 {
@@ -53,7 +53,7 @@ namespace Greenshot.Helpers
         private static readonly ILog Log = LogManager.GetLogger(typeof(CaptureHelper));
 
         private static readonly CoreConfiguration CoreConfig = IniConfig.GetIniSection<CoreConfiguration>();
-        
+
         private List<WindowDetails> _windows = new();
         private WindowDetails _selectedCaptureWindow;
         private NativeRect _captureRect = NativeRect.Empty;

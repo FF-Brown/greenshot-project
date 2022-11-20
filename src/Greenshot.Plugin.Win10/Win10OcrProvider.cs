@@ -23,9 +23,6 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
-using Windows.Graphics.Imaging;
-using Windows.Media.Ocr;
-using Windows.Storage.Streams;
 using Dapplo.Windows.Common.Structs;
 using Greenshot.Base.Core;
 using Greenshot.Base.Core.Enums;
@@ -33,6 +30,9 @@ using Greenshot.Base.Effects;
 using Greenshot.Base.Interfaces;
 using Greenshot.Base.Interfaces.Ocr;
 using Greenshot.Base.Interfaces.Plugin;
+using Windows.Graphics.Imaging;
+using Windows.Media.Ocr;
+using Windows.Storage.Streams;
 
 namespace Greenshot.Plugin.Win10
 {

@@ -138,23 +138,23 @@ namespace Greenshot.Plugin.Imgur
             try
             {
                 var form = SimpleServiceProvider.Current.GetInstance<Form>();
-                form.BeginInvoke((MethodInvoker) delegate
-                {
-                    var historyMenuItem = _historyMenuItem;
-                    if (historyMenuItem == null)
-                    {
-                        return;
-                    }
+                form.BeginInvoke((MethodInvoker)delegate
+               {
+                   var historyMenuItem = _historyMenuItem;
+                   if (historyMenuItem == null)
+                   {
+                       return;
+                   }
 
-                    if (_config?.ImgurUploadHistory != null && _config.ImgurUploadHistory.Count > 0)
-                    {
-                        historyMenuItem.Enabled = true;
-                    }
-                    else
-                    {
-                        historyMenuItem.Enabled = false;
-                    }
-                });
+                   if (_config?.ImgurUploadHistory != null && _config.ImgurUploadHistory.Count > 0)
+                   {
+                       historyMenuItem.Enabled = true;
+                   }
+                   else
+                   {
+                       historyMenuItem.Enabled = false;
+                   }
+               });
             }
             catch (Exception ex)
             {

@@ -21,8 +21,8 @@
 
 using System;
 using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.ApplicationModel.DataTransfer;
 using Dapplo.Windows.Common.Extensions;
+using Windows.ApplicationModel.DataTransfer;
 
 namespace Greenshot.Plugin.Win10.Native
 {

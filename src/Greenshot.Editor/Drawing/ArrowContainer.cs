@@ -69,7 +69,7 @@ namespace Greenshot.Editor.Drawing
             bool shadow = GetFieldValueAsBool(FieldType.SHADOW);
 
             if (lineThickness <= 0) return;
-            
+
             graphics.SmoothingMode = SmoothingMode.HighQuality;
             graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
             graphics.CompositingQuality = CompositingQuality.HighQuality;

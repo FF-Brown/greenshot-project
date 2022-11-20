@@ -369,7 +369,7 @@ namespace Greenshot.Base.Core
                 }
             }
         }
-        
+
         [IniProperty("WebRequestTimeout", Description = "The connect timeout value for web requests, these are seconds", DefaultValue = "100")]
         public int WebRequestTimeout { get; set; }
 
@@ -414,7 +414,7 @@ namespace Greenshot.Base.Core
 
             return Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         }
-        
+
         /// <summary>
         /// Supply values we can't put as defaults
         /// </summary>
@@ -445,7 +445,7 @@ namespace Greenshot.Base.Core
                 },
                 _ => null
             };
-        
+
         /// <summary>
         /// This method will be called before converting the property, making to possible to correct a certain value
         /// Can be used when migration is needed

@@ -382,7 +382,7 @@ namespace Greenshot.Forms
         {
             var uiContext = TaskScheduler.FromCurrentSynchronizationContext();
             SimpleServiceProvider.Current.AddService(uiContext);
- 
+
             // The most important form is this
             SimpleServiceProvider.Current.AddService<Form>(this);
             // Also as itself
@@ -524,7 +524,7 @@ namespace Greenshot.Forms
                 new EmailDestination(),
                 new PickerDestination()
             };
-            
+
             bool useEditor = false;
             if (WindowsVersion.IsWindows10OrLater)
             {
@@ -536,7 +536,8 @@ namespace Greenshot.Forms
                 {
                     useEditor = true;
                 }
-            } else
+            }
+            else
             {
                 useEditor = true;
             }
@@ -614,15 +615,15 @@ namespace Greenshot.Forms
                         try
                         {
                             IniConfig.Reload();
-                            Invoke((MethodInvoker) delegate
-                            {
-                                // Even update language when needed
-                                UpdateUi();
-                                // Update the hotkey
-                                // Make sure the current hotkeys are disabled
-                                HotkeyControl.UnregisterHotkeys();
-                                RegisterHotkeys();
-                            });
+                            Invoke((MethodInvoker)delegate
+                           {
+                               // Even update language when needed
+                               UpdateUi();
+                               // Update the hotkey
+                               // Make sure the current hotkeys are disabled
+                               HotkeyControl.UnregisterHotkeys();
+                               RegisterHotkeys();
+                           });
                         }
                         catch (Exception ex)
                         {
@@ -929,7 +930,7 @@ namespace Greenshot.Forms
         {
             Hide();
             ShowInTaskbar = false;
-            
+
             // TODO: Do we really need this?
             //using var loProcess = Process.GetCurrentProcess();
             //loProcess.MaxWorkingSet = (IntPtr)750000;
@@ -1143,7 +1144,7 @@ namespace Greenshot.Forms
             {
                 var displayToCapture = displayInfo;
                 string deviceAlignment = displayToCapture.DeviceName;
-                    
+
                 if (displayInfo.Bounds.Top == allScreensBounds.Top && displayInfo.Bounds.Bottom != allScreensBounds.Bottom)
                 {
                     deviceAlignment += " " + Language.GetString(LangKey.contextmenu_capturefullscreen_top);
@@ -1332,34 +1333,34 @@ namespace Greenshot.Forms
                 return;
             }
 
-            ToolStripMenuItem clickedItem = (ToolStripMenuItem) sender;
-            KeyValuePair<WindowDetails, int> tabData = (KeyValuePair<WindowDetails, int>) clickedItem.Tag;
-            BeginInvoke((MethodInvoker) delegate
-            {
-                WindowDetails ieWindowToCapture = tabData.Key;
-                if (ieWindowToCapture != null && (!ieWindowToCapture.Visible || ieWindowToCapture.Iconic))
-                {
-                    ieWindowToCapture.Restore();
-                }
+            ToolStripMenuItem clickedItem = (ToolStripMenuItem)sender;
+            KeyValuePair<WindowDetails, int> tabData = (KeyValuePair<WindowDetails, int>)clickedItem.Tag;
+            BeginInvoke((MethodInvoker)delegate
+           {
+               WindowDetails ieWindowToCapture = tabData.Key;
+               if (ieWindowToCapture != null && (!ieWindowToCapture.Visible || ieWindowToCapture.Iconic))
+               {
+                   ieWindowToCapture.Restore();
+               }
 
-                try
-                {
-                    IeCaptureHelper.ActivateIeTab(ieWindowToCapture, tabData.Value);
-                }
-                catch (Exception exception)
-                {
-                    LOG.Error(exception);
-                }
+               try
+               {
+                   IeCaptureHelper.ActivateIeTab(ieWindowToCapture, tabData.Value);
+               }
+               catch (Exception exception)
+               {
+                   LOG.Error(exception);
+               }
 
-                try
-                {
-                    CaptureHelper.CaptureIe(false, ieWindowToCapture);
-                }
-                catch (Exception exception)
-                {
-                    LOG.Error(exception);
-                }
-            });
+               try
+               {
+                   CaptureHelper.CaptureIe(false, ieWindowToCapture);
+               }
+               catch (Exception exception)
+               {
+                   LOG.Error(exception);
+               }
+           });
         }
 
         /// <summary>

@@ -147,7 +147,7 @@ namespace Greenshot.Editor.Drawing
                 using Pen pen = new Pen(lineColor, lineThickness);
                 int inflateValue = lineThickness + 2 + (shadow ? 6 : 0);
                 using GraphicsPath tailPath = CreateTail();
-         
+
                 var bubbleBounds = new NativeRect(Left, Top, Width, Height).Normalize();
                 using var matrix = new Matrix();
 

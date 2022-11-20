@@ -334,37 +334,37 @@ namespace Greenshot.Editor.Forms
         /// </summary>
         private void AddDestinations()
         {
-            Invoke((MethodInvoker) delegate
-            {
-                // Create export buttons
-                foreach (IDestination destination in DestinationHelper.GetAllDestinations())
-                {
-                    if (destination.Priority <= 2)
-                    {
-                        continue;
-                    }
+            Invoke((MethodInvoker)delegate
+           {
+               // Create export buttons
+               foreach (IDestination destination in DestinationHelper.GetAllDestinations())
+               {
+                   if (destination.Priority <= 2)
+                   {
+                       continue;
+                   }
 
-                    if (!destination.IsActive)
-                    {
-                        continue;
-                    }
+                   if (!destination.IsActive)
+                   {
+                       continue;
+                   }
 
-                    if (destination.DisplayIcon == null)
-                    {
-                        continue;
-                    }
+                   if (destination.DisplayIcon == null)
+                   {
+                       continue;
+                   }
 
-                    try
-                    {
-                        AddDestinationButton(destination);
-                    }
-                    catch (Exception addingException)
-                    {
-                        Log.WarnFormat("Problem adding destination {0}", destination.Designation);
-                        Log.Warn("Exception: ", addingException);
-                    }
-                }
-            });
+                   try
+                   {
+                       AddDestinationButton(destination);
+                   }
+                   catch (Exception addingException)
+                   {
+                       Log.WarnFormat("Problem adding destination {0}", destination.Designation);
+                       Log.Warn("Exception: ", addingException);
+                   }
+               }
+           });
         }
 
         private void AddDestinationButton(IDestination toolstripDestination)
@@ -520,7 +520,7 @@ namespace Greenshot.Editor.Forms
         {
             _surface.FieldAggregator.GetField(FieldType.LINE_COLOR).Value = eventArgs.Color;
         }
-        
+
         /// <summary>
         /// This is called when the background color of the select element chances, used for shortcuts
         /// </summary>
@@ -530,7 +530,7 @@ namespace Greenshot.Editor.Forms
         {
             _surface.FieldAggregator.GetField(FieldType.FILL_COLOR).Value = eventArgs.Color;
         }
-        
+
         /// <summary>
         /// This is called when the line thickness of the select element chances, used for shortcuts
         /// </summary>
@@ -540,7 +540,7 @@ namespace Greenshot.Editor.Forms
         {
             _surface.FieldAggregator.GetField(FieldType.LINE_THICKNESS).Value = eventArgs.Thickness;
         }
-        
+
         /// <summary>
         /// This is called when the shadow of the select element chances, used for shortcuts
         /// </summary>
@@ -1601,9 +1601,9 @@ namespace Greenshot.Editor.Forms
         }
 
         protected void CropStyleDropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {      
+        {
             InitCropMode((CropContainer.CropModes)e.ClickedItem.Tag);
-         
+
             RefreshFieldControls();
             Invalidate(true);
         }

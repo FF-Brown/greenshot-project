@@ -22,10 +22,10 @@
 using System;
 using System.Drawing;
 using System.Threading.Tasks;
-using Windows.Media.Ocr;
 using Greenshot.Base.Core;
 using Greenshot.Base.Interfaces;
 using Greenshot.Base.Interfaces.Ocr;
+using Windows.Media.Ocr;
 
 namespace Greenshot.Plugin.Win10.Destinations
 {

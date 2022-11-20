@@ -20,10 +20,10 @@
  */
 
 using System;
+using System.IO;
 using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
-using System.IO;
 using Dapplo.Windows.Multimedia;
 using Dapplo.Windows.Multimedia.Enums;
 using Greenshot.Base.Core;

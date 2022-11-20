@@ -20,10 +20,10 @@
  */
 
 using System;
+using System.IO;
 using System.Windows.Forms;
 using log4net;
 using Microsoft.Win32;
-using System.IO;
 
 namespace Greenshot.Helpers
 {

@@ -23,11 +23,11 @@ using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using Dapplo.Windows.Common.Extensions;
 using Dapplo.Windows.Kernel32;
 using Dapplo.Windows.Kernel32.Enums;
 using Dapplo.Windows.Kernel32.Structs;
 using Dapplo.Windows.User32;
-using Dapplo.Windows.Common.Extensions;
 using Greenshot.Base.IniFile;
 using Microsoft.Win32;
 

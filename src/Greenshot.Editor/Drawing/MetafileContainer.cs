@@ -40,13 +40,13 @@ namespace Greenshot.Editor.Drawing
         public MetafileContainer(Metafile metafile, ISurface parent) : base(parent)
         {
             _metafile = metafile;
-            Size = new NativeSize(metafile.Width/4, metafile.Height/4);
+            Size = new NativeSize(metafile.Width / 4, metafile.Height / 4);
         }
-        
+
         protected override Image ComputeBitmap()
         {
             var image = ImageHelper.CreateEmpty(Width, Height, PixelFormat.Format32bppArgb, Color.Transparent);
-            
+
             var dstRect = new NativeRect(0, 0, Width, Height);
             using (Graphics graphics = Graphics.FromImage(image))
             {
@@ -56,7 +56,7 @@ namespace Greenshot.Editor.Drawing
                 graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
                 graphics.DrawImage(_metafile, dstRect);
             }
-            
+
             if (RotationAngle == 0) return image;
 
             var newImage = image.Rotate(RotationAngle);
@@ -70,7 +70,7 @@ namespace Greenshot.Editor.Drawing
             {
                 _metafile?.Dispose();
             }
-            
+
             base.Dispose(disposing);
         }
 

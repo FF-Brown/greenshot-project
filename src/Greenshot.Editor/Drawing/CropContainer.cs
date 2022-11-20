@@ -214,7 +214,7 @@ namespace Greenshot.Editor.Drawing
                 _ => base.HandleMouseDown(x, y),
             };
         }
-  
+
         public override bool HandleMouseMove(int x, int y)
         {
             Invalidate();

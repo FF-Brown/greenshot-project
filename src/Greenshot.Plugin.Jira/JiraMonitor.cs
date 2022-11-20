@@ -102,8 +102,8 @@ namespace Greenshot.Plugin.Jira
         /// </summary>
         public IEnumerable<JiraDetails> RecentJiras =>
             (from jiraDetails in _recentJiras.Values
-                orderby jiraDetails.SeenAt descending
-                select jiraDetails);
+             orderby jiraDetails.SeenAt descending
+             select jiraDetails);
 
         /// <summary>
         /// Check if this monitor has active instances
@@ -216,8 +216,8 @@ namespace Greenshot.Plugin.Jira
                 {
                     // Add it to the list of recent Jiras
                     _recentJiras = (from jiraDetails in _recentJiras.Values.ToList()
-                        orderby jiraDetails.SeenAt descending
-                        select jiraDetails).Take(_maxEntries).ToDictionary(jd => jd.JiraKey, jd => jd);
+                                    orderby jiraDetails.SeenAt descending
+                                    select jiraDetails).Take(_maxEntries).ToDictionary(jd => jd.JiraKey, jd => jd);
                 }
 
                 // Now we can get the title from JIRA itself

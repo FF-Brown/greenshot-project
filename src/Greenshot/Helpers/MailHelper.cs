@@ -19,7 +19,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using log4net;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,6 +30,7 @@ using Greenshot.Base.Core;
 using Greenshot.Base.IniFile;
 using Greenshot.Base.Interfaces;
 using Greenshot.Base.Interfaces.Plugin;
+using log4net;
 
 namespace Greenshot.Helpers
 {

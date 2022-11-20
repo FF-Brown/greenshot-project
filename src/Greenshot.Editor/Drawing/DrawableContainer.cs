@@ -515,7 +515,7 @@ namespace Greenshot.Editor.Drawing
         public virtual bool HandleMouseDown(int x, int y)
         {
             _boundsBeforeResize = Bounds.MoveTo(x, y);
-            Left =  x;
+            Left = x;
             Top = y;
             return true;
         }

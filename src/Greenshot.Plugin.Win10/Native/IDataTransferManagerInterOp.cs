@@ -19,8 +19,8 @@
 
 using System;
 using System.Runtime.InteropServices;
-using Windows.ApplicationModel.DataTransfer;
 using Dapplo.Windows.Common.Enums;
+using Windows.ApplicationModel.DataTransfer;
 
 namespace Greenshot.Plugin.Win10.Native
 {

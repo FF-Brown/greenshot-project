@@ -19,7 +19,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using log4net;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -39,6 +38,7 @@ using Greenshot.Base.Core;
 using Greenshot.Base.IniFile;
 using Greenshot.Base.Interfaces;
 using Greenshot.Base.Interfaces.Ocr;
+using log4net;
 
 namespace Greenshot.Forms
 {
