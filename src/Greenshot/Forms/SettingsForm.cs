@@ -652,13 +652,9 @@ namespace Greenshot.Forms
         {
             // Get the storage location and replace the environment variables
             folderBrowserDialog1.SelectedPath = FilenameHelper.FillVariables(textbox_storagelocation.Text, false);
-            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK && folderBrowserDialog1.SelectedPath != null && !folderBrowserDialog1.SelectedPath.Equals(FilenameHelper.FillVariables(textbox_storagelocation.Text, false)))
             {
-                // Only change if there is a change, otherwise we might overwrite the environment variables
-                if (folderBrowserDialog1.SelectedPath != null && !folderBrowserDialog1.SelectedPath.Equals(FilenameHelper.FillVariables(textbox_storagelocation.Text, false)))
-                {
-                    textbox_storagelocation.Text = folderBrowserDialog1.SelectedPath;
-                }
+                textbox_storagelocation.Text = folderBrowserDialog1.SelectedPath;
             }
         }
 
