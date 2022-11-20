@@ -60,16 +60,7 @@ namespace Greenshot.Forms
         private static readonly Brush GreenOverlayBrush = new SolidBrush(Color.FromArgb(50, Color.MediumSeaGreen));
         private static readonly Pen OverlayPen = new Pen(Color.FromArgb(50, Color.Black));
         private static CaptureForm _currentForm;
-        private static readonly Brush BackgroundBrush;
-
-        /// <summary>
-        /// Initialize the background brush
-        /// </summary>
-        static CaptureForm()
-        {
-            Image backgroundForTransparency = GreenshotResources.GetImage("Checkerboard.Image");
-            BackgroundBrush = new TextureBrush(backgroundForTransparency, WrapMode.Tile);
-        }
+        private static readonly Brush BackgroundBrush = new TextureBrush(GreenshotResources.GetImage("Checkerboard.Image"), WrapMode.Tile);
 
         private int _mX;
         private int _mY;
