@@ -32,7 +32,7 @@ namespace Greenshot
     /// </summary>
     public class GreenshotMain
     {
-        static GreenshotMain()
+        protected GreenshotMain()
         {
             AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
         }
