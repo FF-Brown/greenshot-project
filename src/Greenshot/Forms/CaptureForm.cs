@@ -39,6 +39,7 @@ using Greenshot.Base.IniFile;
 using Greenshot.Base.Interfaces;
 using Greenshot.Base.Interfaces.Ocr;
 using log4net;
+using System.Linq;
 
 namespace Greenshot.Forms
 {
@@ -470,12 +471,11 @@ namespace Greenshot.Forms
                 if (lineBounds.IsEmpty) continue;
                 // Highlight the text which is selected
                 if (!lineBounds.Contains(location)) continue;
-                foreach (var word in line.Words)
+                foreach (var _ in from word in line.Words
+                                  where word.Bounds.Contains(location)
+                                  select new { })
                 {
-                    if (word.Bounds.Contains(location))
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
 
@@ -986,12 +986,11 @@ namespace Greenshot.Forms
                         // Highlight the text which is selected
                         if (lineBounds.IntersectsWith(_captureRect))
                         {
-                            foreach (var word in line.Words)
+                            foreach (var word in from word in line.Words
+                                                 where word.Bounds.IntersectsWith(_captureRect)
+                                                 select word)
                             {
-                                if (word.Bounds.IntersectsWith(_captureRect))
-                                {
-                                    graphics.FillRectangle(highlightTextBrush, word.Bounds);
-                                }
+                                graphics.FillRectangle(highlightTextBrush, word.Bounds);
                             }
                         }
                     }
