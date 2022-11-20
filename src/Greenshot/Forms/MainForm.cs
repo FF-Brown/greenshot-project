@@ -425,8 +425,6 @@ namespace Greenshot.Forms
             HotkeyControl.RegisterHotkeyHwnd(Handle);
             RegisterHotkeys();
 
-            new ToolTip();
-
             UpdateUi();
 
             // This forces the registration of all destinations inside Greenshot itself.
