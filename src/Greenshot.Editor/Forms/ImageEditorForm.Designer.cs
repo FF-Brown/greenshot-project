@@ -71,6 +71,7 @@ namespace Greenshot.Editor.Forms {
 			this.btnStepLabel = new GreenshotToolStripButton();
 			this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
 			this.btnHighlight = new GreenshotToolStripButton();
+            this.btnRedact = new GreenshotToolStripButton();
 			this.btnObfuscate = new GreenshotToolStripButton();
 			this.toolStripSplitButton1 = new GreenshotToolStripDropDownButton();
 			this.addBorderToolStripMenuItem = new GreenshotToolStripMenuItem();
@@ -99,8 +100,8 @@ namespace Greenshot.Editor.Forms {
 			this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
 			this.insert_window_toolstripmenuitem = new GreenshotToolStripMenuItem();
 			this.objectToolStripMenuItem = new GreenshotToolStripMenuItem();
-			this.addRectangleToolStripMenuItem = new GreenshotToolStripMenuItem();
-			this.addEllipseToolStripMenuItem = new GreenshotToolStripMenuItem();
+            this.addRectangleToolStripMenuItem = new GreenshotToolStripMenuItem();
+            this.addEllipseToolStripMenuItem = new GreenshotToolStripMenuItem();
 			this.drawLineToolStripMenuItem = new GreenshotToolStripMenuItem();
 			this.drawArrowToolStripMenuItem = new GreenshotToolStripMenuItem();
 			this.drawFreehandToolStripMenuItem = new GreenshotToolStripMenuItem();
@@ -338,6 +339,7 @@ namespace Greenshot.Editor.Forms {
 									this.btnStepLabel,
 									this.toolStripSeparator14,
 									this.btnHighlight,
+                                    this.btnRedact,
 									this.btnObfuscate,
 									this.toolStripSplitButton1,
 									this.toolStripSeparator13,
@@ -366,20 +368,20 @@ namespace Greenshot.Editor.Forms {
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			// 
-			// btnRect
-			// 
-			this.btnRect.CheckOnClick = true;
-			this.btnRect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.btnRect.Image = ((System.Drawing.Image)(resources.GetObject("btnRect.Image")));
-			this.btnRect.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.btnRect.LanguageKey = "editor_drawrectangle";
-			this.btnRect.Name = "btnRect";
-			this.btnRect.Click += new System.EventHandler(this.BtnRectClick);
-			// 
-			// btnEllipse
-			// 
-			this.btnEllipse.CheckOnClick = true;
+            // 
+            // btnRect
+            // 
+            this.btnRect.CheckOnClick = true;
+            this.btnRect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnRect.Image = ((System.Drawing.Image)(resources.GetObject("btnRect.Image")));
+            this.btnRect.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRect.LanguageKey = "editor_drawrectangle";
+            this.btnRect.Name = "btnRect";
+            this.btnRect.Click += new System.EventHandler(this.BtnRectClick);
+            // 
+            // btnEllipse
+            // 
+            this.btnEllipse.CheckOnClick = true;
 			this.btnEllipse.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.btnEllipse.Image = ((System.Drawing.Image)(resources.GetObject("btnEllipse.Image")));
 			this.btnEllipse.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -458,6 +460,16 @@ namespace Greenshot.Editor.Forms {
 			this.btnHighlight.LanguageKey = "editor_drawhighlighter";
 			this.btnHighlight.Name = "btnHighlight";
 			this.btnHighlight.Click += new System.EventHandler(this.BtnHighlightClick);
+            // 
+            // btnRedact
+            // 
+            this.btnRedact.CheckOnClick = true;
+            this.btnRedact.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnRedact.Image = ((System.Drawing.Image)(resources.GetObject("btnRedact.Image")));
+            this.btnRedact.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRedact.LanguageKey = "editor_redact";
+            this.btnRedact.Name = "btnRedact";
+            this.btnRedact.Click += new System.EventHandler(this.BtnRedactClick);
 			// 
 			// btnObfuscate
 			// 
@@ -706,17 +718,17 @@ namespace Greenshot.Editor.Forms {
 			this.objectToolStripMenuItem.Name = "objectToolStripMenuItem";
 			this.objectToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
 			this.objectToolStripMenuItem.Text = "Object";
-			// 
-			// addRectangleToolStripMenuItem
-			// 
-			this.addRectangleToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("addRectangleToolStripMenuItem.Image")));
-			this.addRectangleToolStripMenuItem.LanguageKey = "editor_drawrectangle";
-			this.addRectangleToolStripMenuItem.Name = "addRectangleToolStripMenuItem";
-			this.addRectangleToolStripMenuItem.Click += new System.EventHandler(this.AddRectangleToolStripMenuItemClick);
-			// 
-			// addEllipseToolStripMenuItem
-			// 
-			this.addEllipseToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("addEllipseToolStripMenuItem.Image")));
+            // 
+            // addRectangleToolStripMenuItem
+            // 
+            this.addRectangleToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("addRectangleToolStripMenuItem.Image")));
+            this.addRectangleToolStripMenuItem.LanguageKey = "editor_drawrectangle";
+            this.addRectangleToolStripMenuItem.Name = "addRectangleToolStripMenuItem";
+            this.addRectangleToolStripMenuItem.Click += new System.EventHandler(this.AddRectangleToolStripMenuItemClick);
+            // 
+            // addEllipseToolStripMenuItem
+            // 
+            this.addEllipseToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("addEllipseToolStripMenuItem.Image")));
 			this.addEllipseToolStripMenuItem.LanguageKey = "editor_drawellipse";
 			this.addEllipseToolStripMenuItem.Name = "addEllipseToolStripMenuItem";
 			this.addEllipseToolStripMenuItem.Click += new System.EventHandler(this.AddEllipseToolStripMenuItemClick);
@@ -1925,6 +1937,7 @@ namespace Greenshot.Editor.Forms {
 		private GreenshotToolStripMenuItem blurToolStripMenuItem;
 		private BindableToolStripDropDownButton obfuscateModeButton;
 		private GreenshotToolStripButton btnHighlight;
+        private GreenshotToolStripButton btnRedact;
 		private GreenshotToolStripMenuItem loadElementsToolStripMenuItem;
 		private GreenshotToolStripMenuItem saveElementsToolStripMenuItem;
 		private FontFamilyComboBox fontFamilyComboBox;
