@@ -19,7 +19,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using log4net;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -42,6 +41,7 @@ using Greenshot.Configuration;
 using Greenshot.Editor.Destinations;
 using Greenshot.Editor.Drawing;
 using Greenshot.Forms;
+using log4net;
 
 namespace Greenshot.Helpers
 {
@@ -53,7 +53,7 @@ namespace Greenshot.Helpers
         private static readonly ILog Log = LogManager.GetLogger(typeof(CaptureHelper));
 
         private static readonly CoreConfiguration CoreConfig = IniConfig.GetIniSection<CoreConfiguration>();
-        
+
         private List<WindowDetails> _windows = new();
         private WindowDetails _selectedCaptureWindow;
         private NativeRect _captureRect = NativeRect.Empty;
@@ -254,7 +254,6 @@ namespace Greenshot.Helpers
             MakeCapture();
         }
 
-
         /// <summary>
         /// Make Capture with specified destinations
         /// </summary>
@@ -286,6 +285,7 @@ namespace Greenshot.Helpers
                     }
 
                     break;
+
                 case CaptureMode.Window:
                     retrieveWindowDetailsThread = PrepareForCaptureWithFeedback();
                     break;
@@ -322,6 +322,7 @@ namespace Greenshot.Helpers
                     SetDpi();
                     CaptureWithFeedback();
                     break;
+
                 case CaptureMode.ActiveWindow:
                     if (CaptureActiveWindow())
                     {
@@ -340,6 +341,7 @@ namespace Greenshot.Helpers
                     SetDpi();
                     HandleCapture();
                     break;
+
                 case CaptureMode.IE:
                     if (IeCaptureHelper.CaptureIe(_capture, SelectedCaptureWindow) != null)
                     {
@@ -349,6 +351,7 @@ namespace Greenshot.Helpers
                     }
 
                     break;
+
                 case CaptureMode.FullScreen:
                     // Check how we need to capture the screen
                     bool captureTaken = false;
@@ -370,6 +373,7 @@ namespace Greenshot.Helpers
                             }
 
                             break;
+
                         case ScreenCaptureMode.Fixed:
                             if (CoreConfig.ScreenToCapture > 0 && CoreConfig.ScreenToCapture <= Screen.AllScreens.Length)
                             {
@@ -378,6 +382,7 @@ namespace Greenshot.Helpers
                             }
 
                             break;
+
                         case ScreenCaptureMode.FullScreen:
                             // Do nothing, we take the fullscreen capture automatically
                             break;
@@ -391,6 +396,7 @@ namespace Greenshot.Helpers
                     SetDpi();
                     HandleCapture();
                     break;
+
                 case CaptureMode.Clipboard:
                     // TODO: Fix getting image vs. drawablecontainer
                     Image clipboardImage = ClipboardHelper.GetImage();
@@ -428,6 +434,7 @@ namespace Greenshot.Helpers
                     }
 
                     break;
+
                 case CaptureMode.File:
                     Image fileImage = null;
                     string filename = _capture.CaptureDetails.Filename;
@@ -495,6 +502,7 @@ namespace Greenshot.Helpers
                     }
 
                     break;
+
                 case CaptureMode.LastRegion:
                     if (!CoreConfig.LastCapturedRegion.IsEmpty)
                     {
@@ -525,6 +533,7 @@ namespace Greenshot.Helpers
                     }
 
                     break;
+
                 case CaptureMode.Region:
                     // Check if a region is pre-supplied!
                     if (_captureRect.IsEmpty)
@@ -543,6 +552,7 @@ namespace Greenshot.Helpers
                     }
 
                     break;
+
                 default:
                     Log.Warn("Unknown capture mode: " + _captureMode);
                     break;
@@ -632,6 +642,7 @@ namespace Greenshot.Helpers
                     case SurfaceMessageTyp.FileSaved:
                         ExplorerHelper.OpenInExplorer(surface.LastSaveFullPath);
                         break;
+
                     case SurfaceMessageTyp.UploadedUri:
                         Process.Start(surface.UploadUrl);
                         break;
@@ -659,9 +670,11 @@ namespace Greenshot.Helpers
                 case SurfaceMessageTyp.Error:
                     notifyIconClassicMessageHandler.ShowErrorMessage(eventArgs.Message, TimeSpan.FromHours(1));
                     break;
+
                 case SurfaceMessageTyp.Info:
                     notifyIconClassicMessageHandler.ShowInfoMessage(eventArgs.Message, TimeSpan.FromHours(1), () => { Log.Info("Clicked!"); });
                     break;
+
                 case SurfaceMessageTyp.FileSaved:
                 case SurfaceMessageTyp.UploadedUri:
                     // Show a balloon and register an event handler to open the "capture" for if someone clicks the balloon.
@@ -730,7 +743,7 @@ namespace Greenshot.Helpers
                 // Make sure the resolution is set correctly!
                 if (_capture.CaptureDetails != null)
                 {
-                    ((Bitmap) _capture.Image)?.SetResolution(_capture.CaptureDetails.DpiX, _capture.CaptureDetails.DpiY);
+                    ((Bitmap)_capture.Image)?.SetResolution(_capture.CaptureDetails.DpiX, _capture.CaptureDetails.DpiY);
                 }
 
                 DoCaptureFeedback();
@@ -1105,6 +1118,7 @@ namespace Greenshot.Helpers
                             }
 
                             break;
+
                         case WindowCaptureMode.Aero:
                         case WindowCaptureMode.AeroTransparent:
                             if (WindowCapture.IsDwmAllowed(process))
@@ -1124,6 +1138,7 @@ namespace Greenshot.Helpers
                             }
 
                             break;
+
                         default:
                             // Screen capture
                             if (windowToCapture.Iconic)
@@ -1176,7 +1191,7 @@ namespace Greenshot.Helpers
             previouslyActiveWindow?.ToForeground();
             if (_capture.CaptureDetails != null)
             {
-                ((Bitmap) _capture.Image)?.SetResolution(_capture.CaptureDetails.DpiX, _capture.CaptureDetails.DpiY);
+                ((Bitmap)_capture.Image)?.SetResolution(_capture.CaptureDetails.DpiX, _capture.CaptureDetails.DpiY);
             }
         }
 

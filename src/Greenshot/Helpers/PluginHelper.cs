@@ -1,20 +1,20 @@
 ﻿/*
  * Greenshot - a free and open source screenshot tool
  * Copyright (C) 2007-2021 Thomas Braun, Jens Klingen, Robin Krom
- * 
+ *
  * For more information see: https://getgreenshot.org/
  * The Greenshot project is hosted on GitHub https://github.com/greenshot/greenshot
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 1 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
@@ -87,7 +87,7 @@ namespace Greenshot.Helpers
                 return false;
             }
 
-            var greenshotPlugin = (IGreenshotPlugin) listView.SelectedItems[0].Tag;
+            var greenshotPlugin = (IGreenshotPlugin)listView.SelectedItems[0].Tag;
             return greenshotPlugin?.IsConfigurable == true;
         }
 
@@ -98,7 +98,7 @@ namespace Greenshot.Helpers
                 return;
             }
 
-            var greenshotPlugin = (IGreenshotPlugin) listView.SelectedItems[0].Tag;
+            var greenshotPlugin = (IGreenshotPlugin)listView.SelectedItems[0].Tag;
             if (greenshotPlugin == null)
             {
                 return;
@@ -153,7 +153,7 @@ namespace Greenshot.Helpers
         public void ImportCapture(ICapture captureToImport)
         {
             var mainForm = SimpleServiceProvider.Current.GetInstance<Form>();
-            mainForm.BeginInvoke((MethodInvoker) delegate { CaptureHelper.ImportCapture(captureToImport); });
+            mainForm.BeginInvoke((MethodInvoker)delegate { CaptureHelper.ImportCapture(captureToImport); });
         }
 
         /// <summary>
@@ -172,7 +172,6 @@ namespace Greenshot.Helpers
             };
             return capture;
         }
-
 
         /// <summary>
         /// Private helper to find the plugins in the path
@@ -231,7 +230,7 @@ namespace Greenshot.Helpers
                         continue;
                     }
 
-                    var plugin = (IGreenshotPlugin) Activator.CreateInstance(pluginEntryType);
+                    var plugin = (IGreenshotPlugin)Activator.CreateInstance(pluginEntryType);
                     if (plugin != null)
                     {
                         if (plugin.Initialize())

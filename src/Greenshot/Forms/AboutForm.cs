@@ -53,12 +53,14 @@ namespace Greenshot.Forms
 
         // Variables used for the color-cycle
         private int _waitFrames;
+
         private int _colorIndex;
         private int _scrollCount;
         private bool _hasAnimationsLeft;
 
         // Variables are used to define the location of the dots
         private const int W = 13;
+
         private const int P1 = 7;
         private const int P2 = P1 + W;
         private const int P3 = P2 + W;
@@ -335,9 +337,11 @@ namespace Greenshot.Forms
                     case Keys.Escape:
                         DialogResult = DialogResult.Cancel;
                         break;
+
                     case Keys.E:
                         MessageBox.Show(EnvironmentInfo.EnvironmentToString(true));
                         break;
+
                     case Keys.L:
                         try
                         {
@@ -360,6 +364,7 @@ namespace Greenshot.Forms
                         }
 
                         break;
+
                     case Keys.I:
                         try
                         {
@@ -374,6 +379,7 @@ namespace Greenshot.Forms
                         }
 
                         break;
+
                     default:
                         return base.ProcessCmdKey(ref msg, keyData);
                 }

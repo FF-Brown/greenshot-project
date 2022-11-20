@@ -1,20 +1,20 @@
 ﻿/*
  * Greenshot - a free and open source screenshot tool
  * Copyright (C) 2007-2021 Thomas Braun, Jens Klingen, Robin Krom
- * 
+ *
  * For more information see: https://getgreenshot.org/
  * The Greenshot project is hosted on GitHub https://github.com/greenshot/greenshot
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 1 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
@@ -88,7 +88,7 @@ namespace Greenshot.Helpers
     public class CopyData : NativeWindow, IDisposable
     {
         /// <summary>
-        /// Event raised when data is received on any of the channels 
+        /// Event raised when data is received on any of the channels
         /// this class is subscribed to.
         /// </summary>
         public event CopyDataReceivedEventHandler CopyDataReceived;
@@ -115,27 +115,27 @@ namespace Greenshot.Helpers
         {
             if (m.Msg == WM_COPYDATA)
             {
-                var cds = (COPYDATASTRUCT) Marshal.PtrToStructure(m.LParam, typeof(COPYDATASTRUCT));
+                var cds = (COPYDATASTRUCT)Marshal.PtrToStructure(m.LParam, typeof(COPYDATASTRUCT));
                 if (cds.cbData > 0)
                 {
                     byte[] data = new byte[cds.cbData];
                     Marshal.Copy(cds.lpData, data, 0, cds.cbData);
                     MemoryStream stream = new MemoryStream(data);
                     BinaryFormatter b = new BinaryFormatter();
-                    CopyDataObjectData cdo = (CopyDataObjectData) b.Deserialize(stream);
+                    CopyDataObjectData cdo = (CopyDataObjectData)b.Deserialize(stream);
 
                     if (_channels != null && _channels.Contains(cdo.Channel))
                     {
                         CopyDataReceivedEventArgs d = new CopyDataReceivedEventArgs(cdo.Channel, cdo.Data, cdo.Sent);
                         OnCopyDataReceived(d);
-                        m.Result = (IntPtr) 1;
+                        m.Result = (IntPtr)1;
                     }
                 }
             }
             else if (m.Msg == WM_DESTROY)
             {
                 // WM_DESTROY fires before OnHandleChanged and is
-                // a better place to ensure that we've cleared 
+                // a better place to ensure that we've cleared
                 // everything up.
                 _channels?.OnHandleChange();
                 base.OnHandleChange();
@@ -295,7 +295,7 @@ namespace Greenshot.Helpers
         /// <summary>
         /// Returns the CopyDataChannel for the specified channelName
         /// </summary>
-        public CopyDataChannel this[string channelName] => (CopyDataChannel) Dictionary[channelName];
+        public CopyDataChannel this[string channelName] => (CopyDataChannel)Dictionary[channelName];
 
         /// <summary>
         /// Adds a new channel on which this application can send and
@@ -348,7 +348,7 @@ namespace Greenshot.Helpers
         /// just been removed</param>
         protected override void OnRemoveComplete(object key, object data)
         {
-            ((CopyDataChannel) data).Dispose();
+            ((CopyDataChannel)data).Dispose();
             OnRemove(key, data);
         }
 
@@ -427,12 +427,11 @@ namespace Greenshot.Helpers
 
             if (_recreateChannel)
             {
-                // handle has changed 
+                // handle has changed
                 AddChannel();
             }
 
             CopyDataObjectData cdo = new CopyDataObjectData(obj, ChannelName);
-
 
             // Try to do a binary serialization on obj.
             // This will throw and exception if the object to
@@ -445,11 +444,11 @@ namespace Greenshot.Helpers
             // Now move the data into a pointer so we can send
             // it using WM_COPYDATA:
             // Get the length of the data:
-            int dataSize = (int) stream.Length;
+            int dataSize = (int)stream.Length;
             if (dataSize > 0)
             {
                 // This isn't very efficient if your data is very large.
-                // First we copy to a byte array, then copy to a CoTask 
+                // First we copy to a byte array, then copy to a CoTask
                 // Mem object... And when we use WM_COPYDATA windows will
                 // make yet another copy!  But if you're talking about 4K
                 // or less of data then it doesn't really matter.

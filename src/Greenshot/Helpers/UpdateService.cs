@@ -177,7 +177,6 @@ namespace Greenshot.Helpers
             }
         }
 
-
         /// <summary>
         /// This takes care of creating the toast view model, publishing it, and disposing afterwards
         /// </summary>

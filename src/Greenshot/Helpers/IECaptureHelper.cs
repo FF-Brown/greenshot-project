@@ -1,20 +1,20 @@
 ﻿/*
  * Greenshot - a free and open source screenshot tool
  * Copyright (C) 2007-2021 Thomas Braun, Jens Klingen, Robin Krom
- * 
+ *
  * For more information see: https://getgreenshot.org/
  * The Greenshot project is hosted on GitHub https://github.com/greenshot/greenshot
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 1 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
@@ -220,7 +220,7 @@ namespace Greenshot.Helpers
             IHTMLDocument2 document2;
             if (response != UIntPtr.Zero)
             {
-                document2 = (IHTMLDocument2) Accessible.ObjectFromLresult(response, typeof(IHTMLDocument).GUID, IntPtr.Zero);
+                document2 = (IHTMLDocument2)Accessible.ObjectFromLresult(response, typeof(IHTMLDocument).GUID, IntPtr.Zero);
                 if (document2 == null)
                 {
                     Log.Error("No IHTMLDocument2 found");
@@ -289,7 +289,7 @@ namespace Greenshot.Helpers
                     }
 
                     // Get the content window handle for the shellWindow.Document
-                    IOleWindow oleWindow = (IOleWindow) document2;
+                    IOleWindow oleWindow = (IOleWindow)document2;
                     IntPtr contentWindowHandle = IntPtr.Zero;
                     oleWindow?.GetWindow(out contentWindowHandle);
 
@@ -297,7 +297,7 @@ namespace Greenshot.Helpers
                     {
                         // Get the HTMLDocument to check the hasFocus
                         // See: https://social.msdn.microsoft.com/Forums/en-US/vbgeneral/thread/60c6c95d-377c-4bf4-860d-390840fce31c/
-                        IHTMLDocument4 document4 = (IHTMLDocument4) document2;
+                        IHTMLDocument4 document4 = (IHTMLDocument4)document2;
 
                         if (document4.hasFocus())
                         {
@@ -454,7 +454,6 @@ namespace Greenshot.Helpers
                 //} catch (Exception elementsException) {
                 //    LOG.Warn("An error occurred while creating the capture elements: ", elementsException);
                 //}
-
 
                 if (returnBitmap == null)
                 {
@@ -740,7 +739,7 @@ namespace Greenshot.Helpers
                     //Shoot visible window
                     targetOffset = targetOffset.ChangeY(documentContainer.ScrollTop);
 
-                    // Draw the captured fragment to the target, but "crop" the scrollbars etc while capturing 
+                    // Draw the captured fragment to the target, but "crop" the scrollbars etc while capturing
                     NativeSize viewPortSize = new NativeSize(viewportWidth, viewportHeight);
                     NativeRect clientRectangle = new NativeRect(documentContainer.SourceLocation, viewPortSize);
                     Image fragment = contentWindowDetails.PrintWindow();

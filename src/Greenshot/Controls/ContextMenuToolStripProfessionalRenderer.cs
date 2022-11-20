@@ -42,6 +42,7 @@ namespace Greenshot.Controls
         {
             _provideDeviceDpi = provideDeviceDpi;
         }
+
         protected override void OnRenderItemCheck(ToolStripItemImageRenderEventArgs e)
         {
             var newSize = DpiCalculator.ScaleWithDpi(CoreConfig.IconSize, _provideDeviceDpi.DeviceDpi);

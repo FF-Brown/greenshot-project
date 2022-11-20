@@ -1,20 +1,20 @@
 ﻿/*
  * Greenshot - a free and open source screenshot tool
  * Copyright (C) 2007-2021 Thomas Braun, Jens Klingen, Robin Krom
- * 
+ *
  * For more information see: https://getgreenshot.org/
  * The Greenshot project is hosted on GitHub https://github.com/greenshot/greenshot
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 1 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
@@ -36,7 +36,7 @@ namespace Greenshot.Helpers.IEInterop
     public class DocumentContainer
     {
         private static readonly ILog LOG = LogManager.GetLogger(typeof(DocumentContainer));
-        private const int E_ACCESSDENIED = unchecked((int) 0x80070005L);
+        private const int E_ACCESSDENIED = unchecked((int)0x80070005L);
         private static readonly Guid IID_IWebBrowserApp = new Guid("0002DF05-0000-0000-C000-000000000046");
         private static readonly Guid IID_IWebBrowser2 = new Guid("D30C1661-CDAF-11D0-8A3E-00C04FC9E26E");
         private static int _counter;
@@ -89,7 +89,7 @@ namespace Greenshot.Helpers.IEInterop
             _parent = parent;
             // Calculate startLocation for the frames
             IHTMLWindow2 window2 = document2.parentWindow;
-            IHTMLWindow3 window3 = (IHTMLWindow3) window2;
+            IHTMLWindow3 window3 = (IHTMLWindow3)window2;
             NativePoint contentWindowLocation = contentWindow.WindowRectangle.Location;
             int x = window3.screenLeft - contentWindowLocation.X;
             int y = window3.screenTop - contentWindowLocation.Y;
@@ -131,7 +131,7 @@ namespace Greenshot.Helpers.IEInterop
             _contentWindow = contentWindow;
             _document3 = document2 as IHTMLDocument3;
             // Check what access method is needed for the document
-            IHTMLDocument5 document5 = (IHTMLDocument5) document2;
+            IHTMLDocument5 document5 = (IHTMLDocument5)document2;
 
             //compatibility mode affects how height is computed
             _isDtd = false;
@@ -156,7 +156,7 @@ namespace Greenshot.Helpers.IEInterop
                 IHTMLWindow2 window2 = document2.parentWindow;
                 //IHTMLWindow3 window3 = (IHTMLWindow3)document2.parentWindow;
                 IHTMLScreen screen = window2.screen;
-                IHTMLScreen2 screen2 = (IHTMLScreen2) screen;
+                IHTMLScreen2 screen2 = (IHTMLScreen2)screen;
                 if (_parent != null)
                 {
                     // Copy parent values
@@ -169,9 +169,8 @@ namespace Greenshot.Helpers.IEInterop
                     //DisableScrollbars(document2);
 
                     // Calculate zoom level
-                    _zoomLevelX = screen2.deviceXDPI / (double) screen2.logicalXDPI;
-                    _zoomLevelY = screen2.deviceYDPI / (double) screen2.logicalYDPI;
-
+                    _zoomLevelX = screen2.deviceXDPI / (double)screen2.logicalXDPI;
+                    _zoomLevelY = screen2.deviceYDPI / (double)screen2.logicalYDPI;
 
                     // Calculate the viewport rectangle, needed if there is a frame around the html window
                     LOG.DebugFormat("Screen {0}x{1}", ScaleX(screen.width), ScaleY(screen.height));
@@ -201,7 +200,6 @@ namespace Greenshot.Helpers.IEInterop
             {
                 LOG.Warn("Can't get certain properties for documents, using default. Due to: ", e);
             }
-
 
             try
             {
@@ -235,7 +233,7 @@ namespace Greenshot.Helpers.IEInterop
 
             try
             {
-                IHTMLFramesCollection2 frameCollection = (IHTMLFramesCollection2) document2.frames;
+                IHTMLFramesCollection2 frameCollection = (IHTMLFramesCollection2)document2.frames;
                 for (int frame = 0; frame < frameCollection.length; frame++)
                 {
                     try
@@ -317,8 +315,8 @@ namespace Greenshot.Helpers.IEInterop
                 oldElement = element;
             } while (element != null);
 
-            var elementLocation = new NativePoint((int) x, (int) y);
-            IHTMLElement2 element2 = (IHTMLElement2) frameElement;
+            var elementLocation = new NativePoint((int)x, (int)y);
+            IHTMLElement2 element2 = (IHTMLElement2)frameElement;
             IHTMLRect rec = element2.getBoundingClientRect();
             var elementBoundingLocation = new NativePoint(rec.left, rec.top);
             // Release IHTMLRect
@@ -385,7 +383,7 @@ namespace Greenshot.Helpers.IEInterop
             try
             {
                 // Convert IHTMLWindow2 to IWebBrowser2 using IServiceProvider.
-                IServiceProvider sp = (IServiceProvider) htmlWindow;
+                IServiceProvider sp = (IServiceProvider)htmlWindow;
 
                 // Use IServiceProvider.QueryService to get IWebBrowser2 object.
                 Guid webBrowserApp = IID_IWebBrowserApp;
@@ -393,9 +391,9 @@ namespace Greenshot.Helpers.IEInterop
                 sp.QueryService(ref webBrowserApp, ref webBrowser2, out var brws);
 
                 // Get the document from IWebBrowser2.
-                IWebBrowser2 browser = (IWebBrowser2) brws;
+                IWebBrowser2 browser = (IWebBrowser2)brws;
 
-                return (IHTMLDocument2) browser.Document;
+                return (IHTMLDocument2)browser.Document;
             }
             catch (Exception ex2)
             {
@@ -411,7 +409,7 @@ namespace Greenshot.Helpers.IEInterop
             {
                 try
                 {
-                    string bgColor = (string) _document2.bgColor;
+                    string bgColor = (string)_document2.bgColor;
                     if (bgColor != null)
                     {
                         int rgbInt = int.Parse(bgColor.Substring(1), NumberStyles.HexNumber);
@@ -439,22 +437,22 @@ namespace Greenshot.Helpers.IEInterop
 
         private int ScaleX(int physicalValue)
         {
-            return (int) Math.Round(physicalValue * _zoomLevelX, MidpointRounding.AwayFromZero);
+            return (int)Math.Round(physicalValue * _zoomLevelX, MidpointRounding.AwayFromZero);
         }
 
         private int ScaleY(int physicalValue)
         {
-            return (int) Math.Round(physicalValue * _zoomLevelY, MidpointRounding.AwayFromZero);
+            return (int)Math.Round(physicalValue * _zoomLevelY, MidpointRounding.AwayFromZero);
         }
 
         private int UnscaleX(int physicalValue)
         {
-            return (int) Math.Round(physicalValue / _zoomLevelX, MidpointRounding.AwayFromZero);
+            return (int)Math.Round(physicalValue / _zoomLevelX, MidpointRounding.AwayFromZero);
         }
 
         private int UnscaleY(int physicalValue)
         {
-            return (int) Math.Round(physicalValue / _zoomLevelY, MidpointRounding.AwayFromZero);
+            return (int)Math.Round(physicalValue / _zoomLevelY, MidpointRounding.AwayFromZero);
         }
 
         /// <summary>
@@ -497,7 +495,7 @@ namespace Greenshot.Helpers.IEInterop
         /// </summary>
         public int GetAttributeAsInt(string attribute)
         {
-            int retVal = (int) GetAttribute(attribute);
+            int retVal = (int)GetAttribute(attribute);
             return retVal;
         }
 

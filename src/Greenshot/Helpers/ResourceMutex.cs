@@ -19,11 +19,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using log4net;
 using System;
 using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Threading;
+using log4net;
 
 namespace Greenshot.Helpers
 {

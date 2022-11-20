@@ -19,7 +19,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using log4net;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -39,6 +38,7 @@ using Greenshot.Base.Core;
 using Greenshot.Base.IniFile;
 using Greenshot.Base.Interfaces;
 using Greenshot.Base.Interfaces.Ocr;
+using log4net;
 
 namespace Greenshot.Forms
 {
@@ -242,6 +242,7 @@ namespace Greenshot.Forms
                 case Keys.ShiftKey:
                     _fixMode = FixMode.None;
                     break;
+
                 case Keys.ControlKey:
                     _isCtrlPressed = false;
                     break;
@@ -262,15 +263,19 @@ namespace Greenshot.Forms
                 case Keys.Up:
                     Cursor.Position = new Point(Cursor.Position.X, Cursor.Position.Y - step);
                     break;
+
                 case Keys.Down:
                     Cursor.Position = new Point(Cursor.Position.X, Cursor.Position.Y + step);
                     break;
+
                 case Keys.Left:
                     Cursor.Position = new Point(Cursor.Position.X - step, Cursor.Position.Y);
                     break;
+
                 case Keys.Right:
                     Cursor.Position = new Point(Cursor.Position.X + step, Cursor.Position.Y);
                     break;
+
                 case Keys.ShiftKey:
                     // Fix mode
                     if (_fixMode == FixMode.None)
@@ -279,18 +284,22 @@ namespace Greenshot.Forms
                     }
 
                     break;
+
                 case Keys.ControlKey:
                     _isCtrlPressed = true;
                     break;
+
                 case Keys.Escape:
                     // Cancel
                     DialogResult = DialogResult.Cancel;
                     break;
+
                 case Keys.M:
                     // Toggle mouse cursor
                     _capture.CursorVisible = !_capture.CursorVisible;
                     Invalidate();
                     break;
+
                 case Keys.Z:
                     if (_captureMode == CaptureMode.Region)
                     {
@@ -301,6 +310,7 @@ namespace Greenshot.Forms
                     }
 
                     break;
+
                 case Keys.D:
                     if (_captureMode == CaptureMode.Window)
                     {
@@ -310,6 +320,7 @@ namespace Greenshot.Forms
                     }
 
                     break;
+
                 case Keys.Space:
                     // Toggle capture mode
                     switch (_captureMode)
@@ -324,11 +335,13 @@ namespace Greenshot.Forms
                             _captureRect = NativeRect.Empty;
                             Invalidate();
                             break;
+
                         case CaptureMode.Text:
                             // Set the region capture mode
                             _captureMode = CaptureMode.Region;
                             Invalidate();
                             break;
+
                         case CaptureMode.Window:
                             // Set the region capture mode
                             _captureMode = CaptureMode.Region;
@@ -344,6 +357,7 @@ namespace Greenshot.Forms
                     _selectedCaptureWindow = null;
                     OnMouseMove(this, new MouseEventArgs(MouseButtons.None, 0, Cursor.Position.X, Cursor.Position.Y, 0));
                     break;
+
                 case Keys.Return:
                     // Confirm
                     if (_captureMode == CaptureMode.Window)
@@ -360,10 +374,12 @@ namespace Greenshot.Forms
                     }
 
                     break;
+
                 case Keys.F:
                     ToFront = !ToFront;
                     TopMost = !TopMost;
                     break;
+
                 case Keys.T:
                     _captureMode = CaptureMode.Text;
                     if (_capture.CaptureDetails.OcrInformation is null)
@@ -887,7 +903,7 @@ namespace Greenshot.Forms
                 }
             }
 
-            int alpha = (int) (255 * Conf.ZoomerOpacity);
+            int alpha = (int)(255 * Conf.ZoomerOpacity);
             Color opacyWhite = Color.FromArgb(alpha, 255, 255, 255);
             Color opacyBlack = Color.FromArgb(alpha, 0, 0, 0);
 

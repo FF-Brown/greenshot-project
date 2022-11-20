@@ -102,7 +102,7 @@ namespace Greenshot.Forms
                 item.Checked = coreConfiguration.ClipboardFormats.Contains(clipboardFormat);
             }
 
-            _daysBetweenCheckPreviousValue = (int) numericUpDown_daysbetweencheck.Value;
+            _daysBetweenCheckPreviousValue = (int)numericUpDown_daysbetweencheck.Value;
             DisplayPluginTab();
             UpdateUi();
             ExpertSettingsEnableState(false);
@@ -117,7 +117,7 @@ namespace Greenshot.Forms
         /// <param name="eventArgs">EventArgs</param>
         private void NumericUpDownDaysbetweencheckOnValueChanged(object sender, EventArgs eventArgs)
         {
-            int currentValue = (int) numericUpDown_daysbetweencheck.Value;
+            int currentValue = (int)numericUpDown_daysbetweencheck.Value;
 
             // Check if we can into the forbidden range
             if (currentValue > 0 && currentValue < 7)
@@ -132,17 +132,17 @@ namespace Greenshot.Forms
                 }
             }
 
-            if ((int) numericUpDown_daysbetweencheck.Value < 0)
+            if ((int)numericUpDown_daysbetweencheck.Value < 0)
             {
                 numericUpDown_daysbetweencheck.Value = 0;
             }
 
-            if ((int) numericUpDown_daysbetweencheck.Value > 365)
+            if ((int)numericUpDown_daysbetweencheck.Value > 365)
             {
                 numericUpDown_daysbetweencheck.Value = 365;
             }
 
-            _daysBetweenCheckPreviousValue = (int) numericUpDown_daysbetweencheck.Value;
+            _daysBetweenCheckPreviousValue = (int)numericUpDown_daysbetweencheck.Value;
         }
 
         private void EnterHotkeyControl(object sender, EventArgs e)
@@ -172,6 +172,7 @@ namespace Greenshot.Forms
                     }
 
                     break;
+
                 default:
                     return base.ProcessCmdKey(ref msg, keyData);
             }
@@ -197,7 +198,6 @@ namespace Greenshot.Forms
             comboBox.SelectedItem = Language.Translate(selectedValue);
         }
 
-
         /// <summary>
         /// Get the selected enum value from the combobox, uses generics
         /// </summary>
@@ -207,7 +207,7 @@ namespace Greenshot.Forms
         {
             string enumTypeName = typeof(TEnum).Name;
             string selectedValue = comboBox.SelectedItem as string;
-            TEnum[] availableValues = (TEnum[]) Enum.GetValues(typeof(TEnum));
+            TEnum[] availableValues = (TEnum[])Enum.GetValues(typeof(TEnum));
             TEnum returnValue = availableValues[0];
             foreach (TEnum enumValue in availableValues)
             {
@@ -402,7 +402,7 @@ namespace Greenshot.Forms
         {
             foreach (ListViewItem item in listview_clipboardformats.Items)
             {
-                ClipboardFormat cf = (ClipboardFormat) item.Tag;
+                ClipboardFormat cf = (ClipboardFormat)item.Tag;
                 item.Text = Language.Translate(cf);
             }
         }
@@ -555,7 +555,7 @@ namespace Greenshot.Forms
                 var item = listview_clipboardformats.Items[index];
                 if (item.Checked)
                 {
-                    clipboardFormats.Add((ClipboardFormat) item.Tag);
+                    clipboardFormats.Add((ClipboardFormat)item.Tag);
                 }
             }
 
@@ -586,11 +586,11 @@ namespace Greenshot.Forms
             }
 
             coreConfiguration.OutputDestinations = destinations;
-            coreConfiguration.CaptureDelay = (int) numericUpDownWaitTime.Value;
+            coreConfiguration.CaptureDelay = (int)numericUpDownWaitTime.Value;
             coreConfiguration.DWMBackgroundColor = colorButton_window_background.SelectedColor;
-            coreConfiguration.UpdateCheckInterval = (int) numericUpDown_daysbetweencheck.Value;
+            coreConfiguration.UpdateCheckInterval = (int)numericUpDown_daysbetweencheck.Value;
 
-            coreConfiguration.IconSize = new Size((int) numericUpdownIconSize.Value, (int) numericUpdownIconSize.Value);
+            coreConfiguration.IconSize = new Size((int)numericUpdownIconSize.Value, (int)numericUpdownIconSize.Value);
 
             try
             {
@@ -667,7 +667,6 @@ namespace Greenshot.Forms
             textBoxJpegQuality.Text = trackBarJpegQuality.Value.ToString(CultureInfo.InvariantCulture);
         }
 
-
         private void BtnPatternHelpClick(object sender, EventArgs e)
         {
             string filenamepatternText = Language.GetString(LangKey.settings_message_filenamepattern);
@@ -693,8 +692,8 @@ namespace Greenshot.Forms
             WindowCaptureMode selectedWindowCaptureMode = GetSelected<WindowCaptureMode>(combobox_window_capture_mode);
             if (combobox_language.SelectedItem != null)
             {
-                Log.Debug("Setting language to: " + (string) combobox_language.SelectedValue);
-                Language.CurrentLanguage = (string) combobox_language.SelectedValue;
+                Log.Debug("Setting language to: " + (string)combobox_language.SelectedValue);
+                Language.CurrentLanguage = (string)combobox_language.SelectedValue;
             }
 
             // Reflect language changes to the settings form
