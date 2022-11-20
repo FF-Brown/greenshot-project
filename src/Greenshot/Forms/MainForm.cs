@@ -1537,15 +1537,14 @@ namespace Greenshot.Forms
             };
 
             IniValue iniValue;
-            foreach (string propertyName in _conf.Values.Keys)
+            foreach (var propertyName in from string propertyName in _conf.Values.Keys
+                                         where propertyName.StartsWith("OutputPrint")
+                                         select propertyName)
             {
-                if (propertyName.StartsWith("OutputPrint"))
+                iniValue = _conf.Values[propertyName];
+                if (iniValue.Attributes.LanguageKey != null && !iniValue.IsFixed)
                 {
-                    iniValue = _conf.Values[propertyName];
-                    if (iniValue.Attributes.LanguageKey != null && !iniValue.IsFixed)
-                    {
-                        selectList.AddItem(Language.GetString(iniValue.Attributes.LanguageKey), iniValue, (bool)iniValue.Value);
-                    }
+                    selectList.AddItem(Language.GetString(iniValue.Attributes.LanguageKey), iniValue, (bool)iniValue.Value);
                 }
             }
 
