@@ -964,7 +964,6 @@ namespace Greenshot.Forms
         {
             Graphics graphics = e.Graphics;
             NativeRect clipRectangle = e.ClipRectangle;
-            //graphics.BitBlt((Bitmap)buffer, Point.Empty);
             graphics.DrawImageUnscaled(_capture.Image, Point.Empty);
 
             var ocrInfo = _capture.CaptureDetails.OcrInformation;
