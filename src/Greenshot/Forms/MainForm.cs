@@ -67,7 +67,7 @@ namespace Greenshot.Forms
         private static ILog LOG;
         private static ResourceMutex _applicationMutex;
         private static CoreConfiguration _conf;
-        public static string LogFileLocation;
+        public static readonly string LogFileLocation = LogHelper.InitializeLog4Net();
 
         public static void Start(string[] arguments)
         {
@@ -76,8 +76,6 @@ namespace Greenshot.Forms
             // Set the Thread name, is better than "1"
             Thread.CurrentThread.Name = Application.ProductName;
 
-            // Init Log4NET
-            LogFileLocation = LogHelper.InitializeLog4Net();
             // Get logger
             LOG = LogManager.GetLogger(typeof(MainForm));
 
