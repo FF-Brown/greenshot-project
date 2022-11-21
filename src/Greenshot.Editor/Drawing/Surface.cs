@@ -1734,15 +1734,13 @@ namespace Greenshot.Editor.Drawing
             // Generate a copy of the original image with a dpi equal to the default...
             Bitmap clone = ImageHelper.Clone(_image, PixelFormat.DontCare);
             // otherwise we would have a problem drawing the image to the surface... :(
-            using (Graphics graphics = Graphics.FromImage(clone))
-            {
-                // Do not set the following, the containers need to decide themselves
-                //graphics.SmoothingMode = SmoothingMode.HighQuality;
-                //graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                //graphics.CompositingQuality = CompositingQuality.HighQuality;
-                //graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                _elements.Draw(graphics, clone, renderMode, new Rectangle(Point.Empty, clone.Size));
-            }
+            using Graphics graphics = Graphics.FromImage(clone);
+            // Do not set the following, the containers need to decide themselves
+            //graphics.SmoothingMode = SmoothingMode.HighQuality;
+            //graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+            //graphics.CompositingQuality = CompositingQuality.HighQuality;
+            //graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            _elements.Draw(graphics, clone, renderMode, new Rectangle(Point.Empty, clone.Size));
 
             return clone;
         }
@@ -2149,7 +2147,6 @@ namespace Greenshot.Editor.Drawing
         /// <br/>
         /// For crop-container there is a dedicated method <see cref="ConfirmCrop(bool)"/>.
         /// </summary>
-        /// <param name="confirm">bool</param>
         public void ConfirmSelectedConfirmableElements()
         {
             // create new collection so that we can iterate safely (selectedElements might change due with confirm/cancel)

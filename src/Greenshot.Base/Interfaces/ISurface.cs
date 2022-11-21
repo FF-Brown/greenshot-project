@@ -91,8 +91,7 @@ namespace Greenshot.Base.Interfaces
         /// <param name="borderSize">size of border (0 for none)</param>
         /// <param name="color">Color of string</param>
         /// <param name="fillColor">Color of background (e.g. Color.Transparent)</param>
-        ITextContainer AddTextContainer(string text, int x, int y, FontFamily family, float size, bool italic, bool bold, bool shadow, int borderSize, Color color,
-            Color fillColor);
+        ITextContainer AddTextContainer(string text, int x, int y, FontFamily family, float size, bool italic, bool bold, bool shadow, int borderSize, Color color, Color fillColor);
 
         IImageContainer AddImageContainer(Image image, int x, int y);
         ICursorContainer AddCursorContainer(Cursor cursor, int x, int y);

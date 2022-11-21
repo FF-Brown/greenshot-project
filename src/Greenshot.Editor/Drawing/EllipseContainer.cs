@@ -140,7 +140,7 @@ namespace Greenshot.Editor.Drawing
             double xDistanceFromCenter = x - (caller.Left + caller.Width / 2);
             double yDistanceFromCenter = y - (caller.Top + caller.Height / 2);
             // ellipse: x^2/a^2 + y^2/b^2 = 1
-            return Math.Pow(xDistanceFromCenter, 2) / Math.Pow(caller.Width / 2, 2) + Math.Pow(yDistanceFromCenter, 2) / Math.Pow(caller.Height / 2, 2) < 1;
+            return Math.Pow(xDistanceFromCenter, 2) / Math.Pow((double)caller.Width / 2, 2) + Math.Pow(yDistanceFromCenter, 2) / Math.Pow((double)caller.Height / 2, 2) < 1;
         }
 
         public override bool ClickableAt(int x, int y)

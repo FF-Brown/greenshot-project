@@ -150,7 +150,7 @@ namespace Greenshot.Forms
 
             // Use the self drawn image, first we create the background to be the back-color (as we animate from this)
 
-            _bitmap = ImageHelper.CreateEmpty(90, 90, PixelFormat.Format24bppRgb, BackColor, 96, 96);
+            _bitmap = ImageHelper.CreateEmpty(90, 90, PixelFormat.Format24bppRgb, BackColor);
             pictureBox1.Image = _bitmap;
 
             lblTitle.Text = $@"Greenshot {EnvironmentInfo.GetGreenshotVersion()} {(IniConfig.IsPortable ? " Portable" : "")} ({OsInfo.Bits}) bit)";

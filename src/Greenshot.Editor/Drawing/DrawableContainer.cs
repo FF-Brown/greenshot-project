@@ -119,9 +119,9 @@ namespace Greenshot.Editor.Drawing
                 List<IFilter> ret = new List<IFilter>();
                 foreach (IFieldHolder c in Children)
                 {
-                    if (c is IFilter)
+                    if (c is IFilter filter)
                     {
-                        ret.Add(c as IFilter);
+                        ret.Add(filter);
                     }
                 }
 
@@ -303,8 +303,8 @@ namespace Greenshot.Editor.Drawing
 
         private static int Round(float f)
         {
-            if (float.IsPositiveInfinity(f) || f > int.MaxValue / 2) return int.MaxValue / 2;
-            if (float.IsNegativeInfinity(f) || f < int.MinValue / 2) return int.MinValue / 2;
+            if (float.IsPositiveInfinity(f) || f > (float)int.MaxValue / 2) return int.MaxValue / 2;
+            if (float.IsNegativeInfinity(f) || f < (float)int.MinValue / 2) return int.MinValue / 2;
             return (int) Math.Round(f);
         }
 
@@ -419,16 +419,10 @@ namespace Greenshot.Editor.Drawing
                             else
                             {
                                 var drawingRect = new NativeRect(Bounds.Location, Bounds.Size).Intersect(clipRectangle);
-                                if (filter is MagnifierFilter)
-                                {
-                                    // quick&dirty bugfix, because MagnifierFilter behaves differently when drawn only partially
-                                    // what we should actually do to resolve this is add a better magnifier which is not that special
-                                    filter.Apply(graphics, bmp, Bounds, renderMode);
-                                }
-                                else
-                                {
-                                    filter.Apply(graphics, bmp, drawingRect, renderMode);
-                                }
+                                // quick&dirty bugfix, because MagnifierFilter behaves differently when drawn only partially
+                                // what we should actually do to resolve this is add a better magnifier which is not that special
+                                filter.Apply(graphics, bmp, filter is MagnifierFilter ? Bounds : drawingRect,
+                                    renderMode);
                             }
                         }
                     }
@@ -689,7 +683,7 @@ namespace Greenshot.Editor.Drawing
         /// Snap the container to the edge of the surface.
         /// </summary>
         /// <param name="direction">Direction in which to move the container.</param>
-        /// <param name="surface">The surface the container belongs to.</param>
+        /// <param name="surfaceSize">The size of the surface the container belongs to.</param>
         public void SnapToEdge(Direction direction, Size surfaceSize)
         {
             NativeRectFloat newBounds = GetLocationAfterSnap(direction, this.Bounds, surfaceSize);

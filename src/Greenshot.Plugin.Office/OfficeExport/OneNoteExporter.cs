@@ -62,7 +62,7 @@ namespace Greenshot.Plugin.Office.OfficeExport
             }
 
             string pageId;
-            oneNoteApplication.ComObject.CreateNewPage(unfiledNotesSectionId, out pageId, NewPageStyle.npsDefault);
+            oneNoteApplication.ComObject.CreateNewPage(unfiledNotesSectionId, out pageId);
             newPage.Id = pageId;
             // Set the new name, this is automatically done in the export to page
             newPage.Name = surfaceToUpload.CaptureDetails.Title;
@@ -102,10 +102,10 @@ namespace Greenshot.Plugin.Office.OfficeExport
             var imageXmlStr = string.Format(XmlImageContent, base64String, surfaceToUpload.Image.Width, surfaceToUpload.Image.Height);
             var pageChangesXml = string.Format(XmlOutline, imageXmlStr, page.Id, OnenoteNamespace2010, page.Name);
             LOG.InfoFormat("Sending XML: {0}", pageChangesXml);
-            oneNoteApplication.ComObject.UpdatePageContent(pageChangesXml, DateTime.MinValue, XMLSchema.xs2010, false);
+            oneNoteApplication.ComObject.UpdatePageContent(pageChangesXml, DateTime.MinValue, XMLSchema.xs2010);
             try
             {
-                oneNoteApplication.ComObject.NavigateTo(page.Id, null, false);
+                oneNoteApplication.ComObject.NavigateTo(page.Id, null);
             }
             catch (Exception ex)
             {

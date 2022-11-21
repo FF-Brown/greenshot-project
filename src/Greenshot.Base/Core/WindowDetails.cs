@@ -1312,7 +1312,7 @@ namespace Greenshot.Base.Core
                     backgroundColor = Color.Transparent;
                 }
                 
-                returnImage = ImageHelper.CreateEmpty(windowRect.Width, windowRect.Height, pixelFormat, backgroundColor, 96,96);
+                returnImage = ImageHelper.CreateEmpty(windowRect.Width, windowRect.Height, pixelFormat, backgroundColor);
                 using Graphics graphics = Graphics.FromImage(returnImage);
                 using (SafeGraphicsDcHandle graphicsDc = graphics.GetSafeDeviceContext())
                 {

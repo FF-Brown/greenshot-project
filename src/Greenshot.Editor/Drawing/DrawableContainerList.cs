@@ -730,10 +730,10 @@ namespace Greenshot.Editor.Drawing
             };
             item.Click += delegate
             {
-                foreach (var item in this)
+                foreach (var drawableContainer in this)
                 {
                     MakeBoundsChangeUndoable(false);
-                    item.Width = surface.Image.Width;
+                    drawableContainer.Width = surface.Image.Width;
                 }
                 SnapAllToEdge(Direction.LEFT);
                 surface.Invalidate();
@@ -747,10 +747,10 @@ namespace Greenshot.Editor.Drawing
             };
             item.Click += delegate
             {
-                foreach (var item in this)
+                foreach (var drawableContainer in this)
                 {
                     MakeBoundsChangeUndoable(false);
-                    item.Height = surface.Image.Height;
+                    drawableContainer.Height = surface.Image.Height;
                 }
                 SnapAllToEdge(Direction.TOP);
                 surface.Invalidate();
@@ -979,8 +979,6 @@ namespace Greenshot.Editor.Drawing
                     break;
                 case Direction.BOTTOM:
                     expansion.Bottom = elementSize.Height - 1;
-                    break;
-                default:
                     break;
             }
 

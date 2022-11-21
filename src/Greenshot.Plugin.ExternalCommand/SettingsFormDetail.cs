@@ -150,7 +150,7 @@ namespace Greenshot.Plugin.ExternalCommand
                 // Added this to be more flexible, using the Greenshot var format
                 string cmdPath = FilenameHelper.FillVariables(textBox_commandline.Text, true);
                 // And also replace the "DOS" Variables
-                cmdPath = FilenameHelper.FillCmdVariables(cmdPath, true);
+                cmdPath = FilenameHelper.FillCmdVariables(cmdPath);
                 // Is the command available?
                 if (!File.Exists(cmdPath))
                 {

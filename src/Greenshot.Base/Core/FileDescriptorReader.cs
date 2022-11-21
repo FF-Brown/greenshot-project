@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
+using STATSTG = System.Runtime.InteropServices.ComTypes.STATSTG;
 
 namespace Greenshot.Base.Core
 {
@@ -117,8 +118,7 @@ namespace Greenshot.Base.Core
             Marshal.Release(medium.unionmember);
 
             //get the STATSTG of the IStream to determine how many bytes are in it
-            var iStreamStat = new System.Runtime.InteropServices.ComTypes.STATSTG();
-            iStream.Stat(out iStreamStat, 0);
+            iStream.Stat(out STATSTG iStreamStat, 0);
             int iStreamSize = (int) iStreamStat.cbSize;
 
             //read the data from the IStream into a managed byte array

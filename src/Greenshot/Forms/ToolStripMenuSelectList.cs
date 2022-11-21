@@ -65,7 +65,7 @@ namespace Greenshot.Forms
             {
                 _defaultImage?.Dispose();
                 _defaultImage = ImageHelper.CreateEmpty(newSize.Width, newSize.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb,
-                    Color.Transparent, 96f, 96f);
+                    Color.Transparent);
             }
 
             Image = _defaultImage;
@@ -103,10 +103,7 @@ namespace Greenshot.Forms
             {
                 Text = label
             };
-            if (image == null)
-            {
-                image = _defaultImage;
-            }
+            image ??= _defaultImage;
 
             toolStripMenuSelectListItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
             toolStripMenuSelectListItem.Image = image;

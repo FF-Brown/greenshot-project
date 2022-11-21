@@ -33,7 +33,7 @@ namespace Greenshot.Base.Core
     /// </summary>
     public class Accessible
     {
-        private static int AccessibleObjectFromWindow(IntPtr hWnd, OBJID idObject, ref IAccessible acc)
+        private static int AccessibleObjectFromWindow(IntPtr hWnd, OBJID idObject, out IAccessible acc)
         {
             var guid = new Guid("{618736e0-3c3d-11cf-810c-00aa00389b71}"); // IAccessible
             object obj = null;
@@ -52,7 +52,7 @@ namespace Greenshot.Base.Core
 
         [DllImport("oleacc.dll", PreserveSig = false)]
         [return: MarshalAs(UnmanagedType.Interface)]
-        public static extern object ObjectFromLresult(UIntPtr lResult, [MarshalAs(UnmanagedType.LPStruct)] Guid refiid, IntPtr wParam);
+        public static extern object ObjectFromLResult(UIntPtr lResult, [MarshalAs(UnmanagedType.LPStruct)] Guid refiid, IntPtr wParam);
 
         private enum OBJID : uint
         {

@@ -370,7 +370,7 @@ namespace Greenshot.Base.Core
         /// <returns>IFastBitmap</returns>
         public static IFastBitmap CreateEmpty(NativeSize newSize, PixelFormat pixelFormat, Color backgroundColor)
         {
-            Bitmap destination = ImageHelper.CreateEmpty(newSize.Width, newSize.Height, pixelFormat, backgroundColor, 96f, 96f);
+            Bitmap destination = ImageHelper.CreateEmpty(newSize.Width, newSize.Height, pixelFormat, backgroundColor);
             IFastBitmap fastBitmap = Create(destination);
             fastBitmap.NeedsDispose = true;
             return fastBitmap;

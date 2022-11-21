@@ -541,7 +541,7 @@ EndSelection:<<<<<<<4
                     continue;
                 }
 
-                Bitmap bitmap = null;
+                Bitmap bitmap;
 
                 try
                 {
@@ -573,7 +573,7 @@ EndSelection:<<<<<<<4
                     continue;
                 }
 
-                Bitmap bitmap = null;
+                Bitmap bitmap;
                 using FileStream fileStream = new FileStream(imageFile, FileMode.Open, FileAccess.Read, FileShare.Read);
                 try
                 {
@@ -787,7 +787,7 @@ EndSelection:<<<<<<<4
         /// <returns>Bitmap or null</returns>
         private static Bitmap GetImageForFormat(string format, IDataObject dataObject)
         {
-            Bitmap bitmap = null;
+            Bitmap bitmap;
 
             if (format == FORMAT_HTML)
             {

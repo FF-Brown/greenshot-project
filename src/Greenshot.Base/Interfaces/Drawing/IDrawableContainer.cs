@@ -133,7 +133,7 @@ namespace Greenshot.Base.Interfaces.Drawing
         /// Snap the container to the edge of the surface.
         /// </summary>
         /// <param name="direction">Direction in which to move the container.</param>
-        /// <param name="surface">The surface the container belongs to.</param>
+        /// <param name="surfaceSize">The size of the surface the container belongs to.</param>
         void SnapToEdge(Direction direction, Size surfaceSize);
     }
 }

@@ -69,7 +69,7 @@ namespace Greenshot.Base.Controls
         /// Calculate the interval for the timer to animate the frames
         /// </summary>
         /// <returns>Milliseconds for the interval</returns>
-        protected int Interval() => (int)1000 / VRefresh;
+        protected int Interval() => 1000 / VRefresh;
 
         /// <summary>
         /// Initialize the animation

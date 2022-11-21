@@ -98,7 +98,7 @@ namespace Greenshot.Forms
             {
                 // Fix for Bug 2495900, Multi-user Environment
                 // check whether there's an local instance running already
-                _applicationMutex = ResourceMutex.Create("F48E86D3-E34C-4DB7-8F8F-9A0EA55F0D08", "Greenshot", false);
+                _applicationMutex = ResourceMutex.Create("F48E86D3-E34C-4DB7-8F8F-9A0EA55F0D08", "Greenshot");
 
                 var isAlreadyRunning = !_applicationMutex.IsLocked;
 
@@ -1207,10 +1207,7 @@ namespace Greenshot.Forms
         {
             if (sender is not ToolStripMenuItem captureWindowItem) return;
             var window = captureWindowItem.Tag as WindowDetails;
-            if (_thumbnailForm == null)
-            {
-                _thumbnailForm = new ThumbnailForm();
-            }
+            _thumbnailForm ??= new ThumbnailForm();
 
             _thumbnailForm.ShowThumbnail(window, captureWindowItem.GetCurrentParent().TopLevelControl);
         }

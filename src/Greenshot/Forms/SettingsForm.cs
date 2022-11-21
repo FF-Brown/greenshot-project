@@ -122,14 +122,7 @@ namespace Greenshot.Forms
             // Check if we can into the forbidden range
             if (currentValue > 0 && currentValue < 7)
             {
-                if (_daysBetweenCheckPreviousValue <= currentValue)
-                {
-                    numericUpDown_daysbetweencheck.Value = 7;
-                }
-                else
-                {
-                    numericUpDown_daysbetweencheck.Value = 0;
-                }
+                numericUpDown_daysbetweencheck.Value = _daysBetweenCheckPreviousValue <= currentValue ? 7 : 0;
             }
 
             if ((int) numericUpDown_daysbetweencheck.Value < 0)
@@ -446,14 +439,9 @@ namespace Greenshot.Forms
                 else
                 {
                     ListViewItem item;
-                    if (destinationImage != null)
-                    {
-                        item = listview_destinations.Items.Add(currentDestination.Description, imageNr);
-                    }
-                    else
-                    {
-                        item = listview_destinations.Items.Add(currentDestination.Description);
-                    }
+                    item = destinationImage != null
+                        ? listview_destinations.Items.Add(currentDestination.Description, imageNr)
+                        : listview_destinations.Items.Add(currentDestination.Description);
 
                     item.Tag = currentDestination;
                     item.Checked = coreConfiguration.OutputDestinations.Contains(currentDestination.Designation);

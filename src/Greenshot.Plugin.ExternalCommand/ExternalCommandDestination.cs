@@ -213,12 +213,12 @@ namespace Greenshot.Plugin.ExternalCommand
                 using Process process = new Process();
                 // Fix variables
                 commandline = FilenameHelper.FillVariables(commandline, true);
-                commandline = FilenameHelper.FillCmdVariables(commandline, true);
+                commandline = FilenameHelper.FillCmdVariables(commandline);
 
                 arguments = FilenameHelper.FillVariables(arguments, false);
                 arguments = FilenameHelper.FillCmdVariables(arguments, false);
 
-                process.StartInfo.FileName = FilenameHelper.FillCmdVariables(commandline, true);
+                process.StartInfo.FileName = FilenameHelper.FillCmdVariables(commandline);
                 process.StartInfo.Arguments = FormatArguments(arguments, fullPath);
                 process.StartInfo.UseShellExecute = false;
                 if (config.RedirectStandardOutput)

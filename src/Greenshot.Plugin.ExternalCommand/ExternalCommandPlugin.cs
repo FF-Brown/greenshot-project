@@ -102,7 +102,7 @@ namespace Greenshot.Plugin.ExternalCommand
             }
 
             string commandline = FilenameHelper.FillVariables(ExternalCommandConfig.Commandline[command], true);
-            commandline = FilenameHelper.FillCmdVariables(commandline, true);
+            commandline = FilenameHelper.FillCmdVariables(commandline);
 
             if (!File.Exists(commandline))
             {

@@ -220,7 +220,7 @@ namespace Greenshot.Helpers
             IHTMLDocument2 document2;
             if (response != UIntPtr.Zero)
             {
-                document2 = (IHTMLDocument2) Accessible.ObjectFromLresult(response, typeof(IHTMLDocument).GUID, IntPtr.Zero);
+                document2 = (IHTMLDocument2) Accessible.ObjectFromLResult(response, typeof(IHTMLDocument).GUID, IntPtr.Zero);
                 if (document2 == null)
                 {
                     Log.Error("No IHTMLDocument2 found");

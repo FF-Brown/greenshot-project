@@ -268,7 +268,6 @@ namespace Greenshot.Base.IniFile
         /// <summary>
         /// Set the value to the value in the ini file, or default
         /// </summary>
-        /// <returns></returns>
         public void SetValueFromProperties(IDictionary<string, string> properties)
         {
             string propertyName = _attributes.Name;

@@ -130,7 +130,7 @@ namespace Greenshot.Editor.Forms
 
         public ImageEditorForm()
         {
-            var image = ImageHelper.CreateEmpty(EditorConfiguration.DefaultEditorSize.Width, EditorConfiguration.DefaultEditorSize.Height, PixelFormat.Format32bppArgb, Color.White, 96f, 96f);
+            var image = ImageHelper.CreateEmpty(EditorConfiguration.DefaultEditorSize.Width, EditorConfiguration.DefaultEditorSize.Height, PixelFormat.Format32bppArgb, Color.White);
             ISurface surface = new Surface(image);
             Initialize(surface, false);
         }
