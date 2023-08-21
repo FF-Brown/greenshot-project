@@ -1034,6 +1034,9 @@ namespace Greenshot.Editor.Forms
                     case Keys.C:
                         BtnCropClick(sender, e);
                         break;
+                    case Keys.Z:
+                        BtnResizeClick(sender, e);
+                        break;
                 }
             }
             else if (e.Modifiers.Equals(Keys.Control))
