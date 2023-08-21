@@ -71,6 +71,7 @@ namespace Greenshot.Editor.Forms {
 			this.btnStepLabel = new GreenshotToolStripButton();
 			this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
 			this.btnHighlight = new GreenshotToolStripButton();
+			this.btnRedact = new GreenshotToolStripButton();
 			this.btnObfuscate = new GreenshotToolStripButton();
 			this.toolStripSplitButton1 = new GreenshotToolStripDropDownButton();
 			this.addBorderToolStripMenuItem = new GreenshotToolStripMenuItem();
@@ -338,6 +339,7 @@ namespace Greenshot.Editor.Forms {
 									this.btnStepLabel,
 									this.toolStripSeparator14,
 									this.btnHighlight,
+									this.btnRedact,
 									this.btnObfuscate,
 									this.toolStripSplitButton1,
 									this.toolStripSeparator13,
@@ -458,6 +460,16 @@ namespace Greenshot.Editor.Forms {
 			this.btnHighlight.LanguageKey = "editor_drawhighlighter";
 			this.btnHighlight.Name = "btnHighlight";
 			this.btnHighlight.Click += new System.EventHandler(this.BtnHighlightClick);
+            // 
+            // btnRedact
+            // 
+            this.btnRedact.CheckOnClick = true;
+            this.btnRedact.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnRedact.Image = ((System.Drawing.Image)(resources.GetObject("btnRedact.Image")));
+            this.btnRedact.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRedact.LanguageKey = "editor_redact";
+            this.btnRedact.Name = "btnRedact";
+            this.btnRedact.Click += new System.EventHandler(this.BtnRedactClick);
 			// 
 			// btnObfuscate
 			// 
@@ -1925,6 +1937,7 @@ namespace Greenshot.Editor.Forms {
 		private GreenshotToolStripMenuItem blurToolStripMenuItem;
 		private BindableToolStripDropDownButton obfuscateModeButton;
 		private GreenshotToolStripButton btnHighlight;
+        private GreenshotToolStripButton btnRedact;
 		private GreenshotToolStripMenuItem loadElementsToolStripMenuItem;
 		private GreenshotToolStripMenuItem saveElementsToolStripMenuItem;
 		private FontFamilyComboBox fontFamilyComboBox;
