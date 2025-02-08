@@ -28,6 +28,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.ServiceModel.Security;
 using System.Windows.Forms;
 using Dapplo.Windows.Common.Extensions;
 using Dapplo.Windows.Common.Structs;
@@ -40,6 +41,7 @@ using Greenshot.Base.Interfaces.Drawing;
 using Greenshot.Base.Interfaces.Drawing.Adorners;
 using Greenshot.Editor.Configuration;
 using Greenshot.Editor.Drawing.Fields;
+using Greenshot.Editor.Helpers;
 using Greenshot.Editor.Memento;
 using log4net;
 
@@ -730,6 +732,7 @@ namespace Greenshot.Editor.Drawing
             try
             {
                 BinaryFormatter binaryRead = new BinaryFormatter();
+                binaryRead.Binder = new BinaryFormatterHelper();
                 IDrawableContainerList loadedElements = (IDrawableContainerList) binaryRead.Deserialize(streamRead);
                 loadedElements.Parent = this;
                 // Make sure the steplabels are sorted according to their number
@@ -738,6 +741,10 @@ namespace Greenshot.Editor.Drawing
                 AddElements(loadedElements);
                 SelectElements(loadedElements);
                 FieldAggregator.BindElements(loadedElements);
+            }
+            catch (SecurityAccessDeniedException)
+            {
+                throw;
             }
             catch (Exception e)
             {
