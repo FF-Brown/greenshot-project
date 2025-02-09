@@ -43,7 +43,9 @@ namespace Greenshot.Editor
                     // EMF & WMF
                     new MetaFileFormatHandler(),
                     // JPG XR
-                    new WpfFileFormatHandler()
+                    new WpfFileFormatHandler(),
+                    // JSON
+                    new JsonFileFormatHandler()
                 );
         }
     }

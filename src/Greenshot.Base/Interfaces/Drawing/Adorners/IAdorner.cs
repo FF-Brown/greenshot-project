@@ -21,6 +21,7 @@
 
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Text.Json.Serialization;
 using System.Windows.Forms;
 using Dapplo.Windows.Common.Structs;
 
@@ -80,6 +81,7 @@ namespace Greenshot.Base.Interfaces.Drawing.Adorners
         /// <summary>
         /// Gets the cursor that should be displayed for this behavior.
         /// </summary>
+        [JsonIgnore]
         Cursor Cursor { get; }
 
         /// <summary>

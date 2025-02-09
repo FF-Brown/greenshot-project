@@ -40,7 +40,7 @@ namespace Greenshot.Editor.Drawing
     {
         private static readonly ILog LOG = LogManager.GetLogger(typeof(CursorContainer));
 
-        protected Cursor cursor;
+        private Cursor cursor;
 
         public CursorContainer(ISurface parent) : base(parent)
         {
@@ -63,21 +63,17 @@ namespace Greenshot.Editor.Drawing
             Load(filename);
         }
 
-        public Cursor Cursor
+        public void SetCursor(Cursor newCursor)
         {
-            set
+            if (cursor != null)
             {
-                if (cursor != null)
-                {
-                    cursor.Dispose();
-                }
-
-                // Clone cursor (is this correct??)
-                cursor = new Cursor(value.CopyHandle());
-                Width = value.Size.Width;
-                Height = value.Size.Height;
+                cursor.Dispose();
             }
-            get { return cursor; }
+
+            // Clone cursor (is this correct??)
+            cursor = new Cursor(newCursor.CopyHandle());
+            Width = newCursor.Size.Width;
+            Height = newCursor.Size.Height;
         }
 
         /// <summary>
@@ -107,7 +103,7 @@ namespace Greenshot.Editor.Drawing
             }
 
             using Cursor fileCursor = new Cursor(filename);
-            Cursor = fileCursor;
+            SetCursor(fileCursor);
             LOG.Debug("Loaded file: " + filename + " with resolution: " + Height + "," + Width);
         }
 

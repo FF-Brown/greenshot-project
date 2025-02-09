@@ -856,10 +856,10 @@ namespace Greenshot.Editor.Drawing
         {
             CursorContainer cursorContainer = new CursorContainer(this)
             {
-                Cursor = cursor,
                 Left = x,
                 Top = y
             };
+            cursorContainer.SetCursor(cursor);
             AddElement(cursorContainer);
             return cursorContainer;
         }

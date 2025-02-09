@@ -25,7 +25,7 @@ namespace Greenshot.Base.Interfaces.Drawing
 {
     public interface ICursorContainer : IDrawableContainer
     {
-        Cursor Cursor { get; set; }
         void Load(string filename);
+        void SetCursor(Cursor newCursor);
     }
 }
