@@ -40,7 +40,6 @@ namespace Greenshot.Editor.FileFormatHandlers
             {
                 try
                 {
-                    bitmap.Save(stream, ImageFormat.Png);
                     string base64Image = ConvertImageToBase64(bitmap);
 
                     Version version = Assembly.GetExecutingAssembly().GetName().Version;
@@ -69,9 +68,11 @@ namespace Greenshot.Editor.FileFormatHandlers
             return false;
         }
 
-        private string ConvertImageToBase64(Bitmap image)
+        private string ConvertImageToBase64(Image image)
         {
-            return "Image placeholder";
+            using MemoryStream ms = new();
+            image.Save(ms, ImageFormat.Png);
+            return Convert.ToBase64String(ms.ToArray());
         }
 
         private class OutputData
