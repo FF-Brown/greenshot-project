@@ -5,7 +5,9 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Greenshot.Base.Interfaces;
 using Greenshot.Base.Interfaces.Plugin;
 using log4net;
@@ -15,7 +17,7 @@ namespace Greenshot.Editor.FileFormatHandlers
     public class JsonFileFormatHandler : AbstractFileFormatHandler, IFileFormatHandler
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(JsonFileFormatHandler));
-        private readonly IReadOnlyCollection<string> _ourExtensions = new [] { ".json" };
+        private readonly IReadOnlyCollection<string> _ourExtensions = new[] { ".json" };
 
         public JsonFileFormatHandler()
         {
@@ -24,6 +26,7 @@ namespace Greenshot.Editor.FileFormatHandlers
             SupportedExtensions[FileFormatHandlerActions.SaveToStream] = _ourExtensions;
         }
 
+        /// <inheritdoc />
         public override bool TrySaveToStream(
             Bitmap bitmap,
             Stream stream,
@@ -40,7 +43,7 @@ namespace Greenshot.Editor.FileFormatHandlers
                     bitmap.Save(stream, ImageFormat.Png);
                     string base64Image = ConvertImageToBase64(bitmap);
 
-                    string version = GetVersion();
+                    Version version = Assembly.GetExecutingAssembly().GetName().Version;
 
                     OutputData output = new(version, base64Image, surface);
 
@@ -71,23 +74,16 @@ namespace Greenshot.Editor.FileFormatHandlers
             return "Image placeholder";
         }
 
-        private string GetVersion()
-        {
-            Version v = Assembly.GetExecutingAssembly().GetName().Version;
-
-            return $"Greenshot{v.Major:00}.{v.Minor:00}";
-        }
-
         private class OutputData
         {
-            public string Version { get; }
+            public Version Version { get; }
 
             public string Image { get; }
 
             public ISurface Surface { get; }
 
             public OutputData(
-                string version,
+                Version version,
                 string image,
                 ISurface surface)
             {
