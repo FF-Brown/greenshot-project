@@ -46,10 +46,13 @@ namespace Greenshot.Editor.FileFormatHandlers
 
                     OutputData output = new(version, base64Image, surface);
 
-                    JsonSerializerOptions options = new();
-                    options.WriteIndented = true;
-                    options.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
-                    string outString = JsonSerializer.Serialize(output, options);
+                    JsonSerializerOptions options = new()
+                    {
+                        WriteIndented = true,
+                        ReferenceHandler = ReferenceHandler.Preserve,
+                    };
+
+                    JsonSerializer.Serialize(stream, output, options);
 
                     didSaveToStream = true;
                 }
