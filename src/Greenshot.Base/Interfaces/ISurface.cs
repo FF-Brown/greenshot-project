@@ -260,9 +260,6 @@ namespace Greenshot.Base.Interfaces
         /// <summary>
         /// The most recent DPI value that was used
         /// </summary>
-        public int CurrentDpi
-        {
-            get;
-        }
+        public int CurrentDpi { get; }
     }
 }
