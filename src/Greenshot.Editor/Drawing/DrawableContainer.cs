@@ -74,6 +74,8 @@ namespace Greenshot.Editor.Drawing
 
         protected EditStatus _defaultEditMode = EditStatus.DRAWING;
 
+        public string TypeName => GetType().AssemblyQualifiedName;
+
         public EditStatus DefaultEditMode
         {
             get { return _defaultEditMode; }

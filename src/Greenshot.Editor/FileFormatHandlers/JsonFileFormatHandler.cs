@@ -10,6 +10,7 @@ using Greenshot.Base.Core;
 using Greenshot.Base.Interfaces;
 using Greenshot.Base.Interfaces.Drawing;
 using Greenshot.Base.Interfaces.Plugin;
+using Greenshot.Editor.Drawing;
 using log4net;
 
 namespace Greenshot.Editor.FileFormatHandlers
@@ -34,6 +35,10 @@ namespace Greenshot.Editor.FileFormatHandlers
             ISurface surface = null,
             SurfaceOutputSettings surfaceOutputSettings = null)
         {
+            File.AppendAllText(
+                @"C:\Users\Nathan\Downloads\greenshotTest.log",
+                $"\n~~~~ Begin export\n");
+
             bool didSaveToStream = false;
 
             if (surface != null)
@@ -44,6 +49,7 @@ namespace Greenshot.Editor.FileFormatHandlers
 
                     Version version = Assembly.GetExecutingAssembly().GetName().Version;
 
+                    ExportSurface exportData = new(version, base64Image, surface);
 
                     JsonSerializerOptions options = new()
                     {
@@ -58,9 +64,15 @@ namespace Greenshot.Editor.FileFormatHandlers
                 catch (Exception ex)
                 {
                     Log.Error($"Couldn't save surface as {extension}: ", ex);
+                    File.AppendAllText(
+                        @"C:\Users\Nathan\Downloads\greenshotTest.log",
+                        $"Couldn't save surface as .json: {ex.Message}\n");
                 }
             }
 
+            File.AppendAllText(
+                @"C:\Users\Nathan\Downloads\greenshotTest.log",
+                $"Did Save: {didSaveToStream}\n");
             return didSaveToStream;
         }
 
@@ -73,9 +85,14 @@ namespace Greenshot.Editor.FileFormatHandlers
                 @"C:\Users\Nathan\Downloads\greenshotTest.log",
                 $"\n~~~~ Begin import\n");
 
+            JsonSerializerOptions options = new()
+            {
+                Converters = { new DrawableContainerConverter() },
+            };
+
             try
             {
-                outputData = JsonSerializer.Deserialize<ExportSurface>(stream);
+                outputData = JsonSerializer.Deserialize<ExportSurface>(stream, options);
             }
             catch (Exception ex)
             {
@@ -87,7 +104,6 @@ namespace Greenshot.Editor.FileFormatHandlers
                     $"{ex.InnerException.Message}\n");
             }
 
-            bitmap = null;
             if (outputData != null)
             {
                 try
@@ -130,31 +146,31 @@ namespace Greenshot.Editor.FileFormatHandlers
 
             returnSurface.Image = capture;
             returnSurface.Elements.Clear();
-            //foreach (var element in exportData.Elements)
-            //{
-            //    returnSurface.Elements.Add(element);
-            //}
+            foreach (var element in exportData.Elements)
+            {
+                returnSurface.Elements.Add(element);
+            }
             returnSurface.CounterStart = exportData.CounterStart;
-            returnSurface.ZoomFactor = exportData.ZoomFactor;
+            //returnSurface.ZoomFactor = exportData.ZoomFactor;
             //returnSurface.FieldAggregator = exportData.FieldAggregator;
             //returnSurface.CurrentDpi = exportData.CurrentDpi;
 
             return returnSurface;
         }
 
-        public class ExportSurface
+        private class ExportSurface
         {
             public Version Version { get; set; }
 
             public string Image { get; set; }
 
-            //public IDrawableContainerList Elements { get; set; }
+            public IDrawableContainer[] Elements { get; set; }
 
             public int CounterStart { get; set; }
 
-            public Fraction ZoomFactor { get; set; }
+            //public Fraction ZoomFactor { get; set; }
 
-            public IFieldAggregator FieldAggregator { get; set; }
+            //public IFieldAggregator FieldAggregator { get; set; }
 
             public int CurrentDpi { get; set; }
 
@@ -171,10 +187,10 @@ namespace Greenshot.Editor.FileFormatHandlers
                 Version = version;
                 Image = base64Image;
 
-                //Elements = surface.Elements;
+                Elements = (surface.Elements as DrawableContainerList).AsIDrawableContainerList().ToArray();
                 CounterStart = surface.CounterStart;
-                ZoomFactor = surface.ZoomFactor;
-                FieldAggregator = surface.FieldAggregator;
+                //ZoomFactor = surface.ZoomFactor;
+                //FieldAggregator = surface.FieldAggregator;
                 CurrentDpi = surface.CurrentDpi;
             }
 
@@ -183,6 +199,152 @@ namespace Greenshot.Editor.FileFormatHandlers
                 byte[] imageBytes = Convert.FromBase64String(Image);
                 using MemoryStream ms = new(imageBytes);
                 return new Bitmap(ms);
+            }
+        }
+
+        private class DrawableContainerConverter : JsonConverter<IDrawableContainer>
+        {
+            public override IDrawableContainer Read(
+                ref Utf8JsonReader reader,
+                Type typeToConvert,
+                JsonSerializerOptions options)
+            {
+                File.AppendAllText(
+                    @"C:\Users\Nathan\Downloads\greenshotTest.log",
+                    $"Converting IDrawableContainer\n");
+
+                IDrawableContainer container = null;
+
+                using JsonDocument doc = JsonDocument.ParseValue(ref reader);
+                var root = doc.RootElement;
+                if (!root.TryGetProperty("TypeName", out JsonElement typeElement))
+                {
+                    throw new JsonException("Missing TypeName property");
+                }
+
+                string type = typeElement.GetString();
+
+                List<Type> types = new()
+                {
+                    typeof(ArrowContainer),
+                    typeof(CursorContainer),
+                };
+
+                //foreach (var targetType in types)
+                //{
+                //    if (type == targetType.AssemblyQualifiedName)
+                //    {
+                //        container == JsonSerializer.Deserialize<typeof(targetType)>(root.GetRawText(), options);
+                //    }
+                //}
+
+                try
+                {
+                    container = DeserializeContainer(type, root.GetRawText(), options);
+                }
+                catch (Exception ex)
+                {
+                    File.AppendAllText(
+                        @"C:\Users\Nathan\Downloads\greenshotTest.log",
+                        $"Failed on type: {type}\n");
+                    File.AppendAllText(
+                        @"C:\Users\Nathan\Downloads\greenshotTest.log",
+                        $"Couldn't import .json: {ex.Message}\n");
+                }
+
+                return container;
+            }
+
+            private IDrawableContainer DeserializeContainer(string type, string jsonText, JsonSerializerOptions options)
+            {
+                IDrawableContainer container = null;
+
+                if (type == typeof(ArrowContainer).AssemblyQualifiedName)
+                {
+                    container = JsonSerializer.Deserialize<ArrowContainer>(jsonText, options);
+                }
+                else if (type == typeof(CropContainer).AssemblyQualifiedName)
+                {
+                    container = JsonSerializer.Deserialize<CropContainer>(jsonText, options);
+                }
+                else if (type == typeof(CursorContainer).AssemblyQualifiedName)
+                {
+                    container = JsonSerializer.Deserialize<CursorContainer>(jsonText, options);
+                }
+                else if (type == typeof(EllipseContainer).AssemblyQualifiedName)
+                {
+                    container = JsonSerializer.Deserialize<EllipseContainer>(jsonText, options);
+                }
+                else if (type == typeof(FilterContainer).AssemblyQualifiedName)
+                {
+                    container = JsonSerializer.Deserialize<FilterContainer>(jsonText, options);
+                }
+                else if (type == typeof(FreehandContainer).AssemblyQualifiedName)
+                {
+                    container = JsonSerializer.Deserialize<FreehandContainer>(jsonText, options);
+                }
+                else if (type == typeof(HighlightContainer).AssemblyQualifiedName)
+                {
+                    container = JsonSerializer.Deserialize<HighlightContainer>(jsonText, options);
+                }
+                else if (type == typeof(IconContainer).AssemblyQualifiedName)
+                {
+                    container = JsonSerializer.Deserialize<IconContainer>(jsonText, options);
+                }
+                else if (type == typeof(ImageContainer).AssemblyQualifiedName)
+                {
+                    container = JsonSerializer.Deserialize<ImageContainer>(jsonText, options);
+                }
+                else if (type == typeof(LineContainer).AssemblyQualifiedName)
+                {
+                    container = JsonSerializer.Deserialize<LineContainer>(jsonText, options);
+                }
+                else if (type == typeof(MetafileContainer).AssemblyQualifiedName)
+                {
+                    container = JsonSerializer.Deserialize<MetafileContainer>(jsonText, options);
+                }
+                else if (type == typeof(ObfuscateContainer).AssemblyQualifiedName)
+                {
+                    container = JsonSerializer.Deserialize<ObfuscateContainer>(jsonText, options);
+                }
+                else if (type == typeof(RectangleContainer).AssemblyQualifiedName)
+                {
+                    container = JsonSerializer.Deserialize<RectangleContainer>(jsonText, options);
+                }
+                else if (type == typeof(SpeechbubbleContainer).AssemblyQualifiedName)
+                {
+                    container = JsonSerializer.Deserialize<SpeechbubbleContainer>(jsonText, options);
+                }
+                else if (type == typeof(StepLabelContainer).AssemblyQualifiedName)
+                {
+                    container = JsonSerializer.Deserialize<StepLabelContainer>(jsonText, options);
+                }
+                else if (type == typeof(SvgContainer).AssemblyQualifiedName)
+                {
+                    container = JsonSerializer.Deserialize<SvgContainer>(jsonText, options);
+                }
+                else if (type == typeof(TextContainer).AssemblyQualifiedName)
+                {
+                    container = JsonSerializer.Deserialize<TextContainer>(jsonText, options);
+                }
+                else if (type == typeof(VectorGraphicsContainer).AssemblyQualifiedName)
+                {
+                    container = JsonSerializer.Deserialize<VectorGraphicsContainer>(jsonText, options);
+                }
+                else
+                {
+                    throw new JsonException($"Unrecognized type '{type}'");
+                }
+
+                return container;
+            }
+
+            public override void Write(
+                Utf8JsonWriter writer,
+                IDrawableContainer value,
+                JsonSerializerOptions options)
+            {
+                throw new NotImplementedException();
             }
         }
     }

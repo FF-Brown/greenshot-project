@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing.Drawing2D;
+using System.Text.Json.Serialization;
 using System.Windows.Forms;
 using Dapplo.Windows.Common.Structs;
 using Greenshot.Base.Interfaces.Drawing.Adorners;
@@ -31,9 +32,12 @@ namespace Greenshot.Base.Interfaces.Drawing
 {
     public interface IDrawableContainer : INotifyPropertyChanged, IDisposable
     {
+        string TypeName { get; }
+
         /// <summary>
         /// The parent surface where this IDrawableContainer is on
         /// </summary>
+        [JsonIgnore]
         ISurface Parent { get; set; }
 
         /// <summary>
