@@ -153,11 +153,8 @@ namespace Greenshot.Editor.FileFormatHandlers
             Bitmap capture = ConvertBase64ToBitmap(exportData.Image);
 
             returnSurface.Image = capture;
-            returnSurface.Elements.Clear();
-            foreach (var element in exportData.Elements)
-            {
-                returnSurface.Elements.Add(element);
-            }
+            //returnSurface.Elements.Clear();
+            returnSurface.LoadElements(exportData.Elements);
             returnSurface.CounterStart = exportData.CounterStart;
             //returnSurface.ZoomFactor = exportData.ZoomFactor;
             //returnSurface.FieldAggregator = exportData.FieldAggregator;
@@ -231,20 +228,6 @@ namespace Greenshot.Editor.FileFormatHandlers
                 }
 
                 string type = typeElement.GetString();
-
-                List<Type> types = new()
-                {
-                    typeof(ArrowContainer),
-                    typeof(CursorContainer),
-                };
-
-                //foreach (var targetType in types)
-                //{
-                //    if (type == targetType.AssemblyQualifiedName)
-                //    {
-                //        container == JsonSerializer.Deserialize<typeof(targetType)>(root.GetRawText(), options);
-                //    }
-                //}
 
                 try
                 {
