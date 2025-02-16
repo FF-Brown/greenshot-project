@@ -45,7 +45,7 @@ namespace Greenshot.Editor.FileFormatHandlers
             {
                 try
                 {
-                    string base64Image = ConvertImageToBase64(bitmap);
+                    string base64Image = ConvertImageToBase64(surface.Image);
 
                     Version version = Assembly.GetExecutingAssembly().GetName().Version;
 
