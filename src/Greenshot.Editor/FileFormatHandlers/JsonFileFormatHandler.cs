@@ -79,11 +79,36 @@ namespace Greenshot.Editor.FileFormatHandlers
         public override bool TryLoadFromStream(Stream stream, string extension, out Bitmap bitmap)
         {
             bool didLoad = false;
-            ExportSurface outputData = null;
             bitmap = null;
             File.AppendAllText(
                 @"C:\Users\Nathan\Downloads\greenshotTest.log",
                 $"\n~~~~ Begin import\n");
+
+            ExportSurface outputData = GetOutputData(stream);
+
+            if (outputData != null)
+            {
+                try
+                {
+                    var surface = LoadSurface(outputData);
+                    bitmap = (Bitmap)surface.GetImageForExport();
+                    didLoad = true;
+                }
+                catch (Exception ex)
+                {
+                    Log.Error("Couldn't load .greenshot: ", ex);
+                    File.AppendAllText(
+                        @"C:\Users\Nathan\Downloads\greenshotTest.log",
+                        $"Couldn't save surface as .json: {ex.Message}\n");
+                }
+            }
+
+            return didLoad;
+        }
+
+        private static ExportSurface GetOutputData(Stream stream)
+        {
+            ExportSurface outputData = null;
 
             JsonSerializerOptions options = new()
             {
@@ -104,24 +129,7 @@ namespace Greenshot.Editor.FileFormatHandlers
                     $"{ex.InnerException.Message}\n");
             }
 
-            if (outputData != null)
-            {
-                try
-                {
-                    var surface = LoadSurface(outputData);
-                    bitmap = (Bitmap)surface.GetImageForExport();
-                    didLoad = true;
-                }
-                catch (Exception ex)
-                {
-                    Log.Error("Couldn't load .greenshot: ", ex);
-                    File.AppendAllText(
-                        @"C:\Users\Nathan\Downloads\greenshotTest.log",
-                        $"Couldn't save surface as .json: {ex.Message}\n");
-                }
-            }
-
-            return didLoad;
+            return outputData;
         }
 
         private string ConvertImageToBase64(Image image)
