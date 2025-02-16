@@ -20,6 +20,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
@@ -101,6 +102,7 @@ namespace Greenshot.Base.Interfaces
         IIconContainer AddIconContainer(string filename, int x, int y);
         long SaveElementsToStream(Stream stream);
         void LoadElementsFromStream(Stream stream);
+        void LoadElements(IEnumerable<IDrawableContainer> elements);
 
         /// <summary>
         /// Provides the selected elements

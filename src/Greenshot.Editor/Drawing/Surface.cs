@@ -726,13 +726,8 @@ namespace Greenshot.Editor.Drawing
                 BinaryFormatter binaryRead = new BinaryFormatter();
                 binaryRead.Binder = new BinaryFormatterHelper();
                 IDrawableContainerList loadedElements = (IDrawableContainerList) binaryRead.Deserialize(streamRead);
-                loadedElements.Parent = this;
-                // Make sure the steplabels are sorted according to their number
-                _stepLabels.Sort((p1, p2) => p1.Number.CompareTo(p2.Number));
-                DeselectAllElements();
-                AddElements(loadedElements);
-                SelectElements(loadedElements);
-                FieldAggregator.BindElements(loadedElements);
+
+                LoadElements(loadedElements);
             }
             catch (SecurityAccessDeniedException)
             {
@@ -742,6 +737,18 @@ namespace Greenshot.Editor.Drawing
             {
                 LOG.Error("Error serializing elements from stream.", e);
             }
+        }
+
+        public void LoadElements(IEnumerable<IDrawableContainer> elements)
+        {
+            DrawableContainerList elementLists = new(elements);
+            elementLists.Parent = this;
+            // Make sure the steplabels are sorted according to their number
+            _stepLabels.Sort((p1, p2) => p1.Number.CompareTo(p2.Number));
+            DeselectAllElements();
+            AddElements(elementLists);
+            SelectElements(elementLists);
+            FieldAggregator.BindElements(elementLists);
         }
 
         /// <summary>
