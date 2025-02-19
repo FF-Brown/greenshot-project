@@ -135,6 +135,10 @@ namespace Greenshot.Base.Core
                 }
 
                 var fileFormatHandlers = SimpleServiceProvider.Current.GetAllInstances<IFileFormatHandler>();
+
+                //File.AppendAllText(@"C:\Users\Nathan\Downloads\greenshotTest.log",
+                //    $"Handlers: {string.Join(", ", fileFormatHandlers.Select(h => h.GetType().ToString()))}\n");
+
                 if (!fileFormatHandlers.TrySaveToStream(imageToSave as Bitmap, targetStream, outputSettings.Format.ToString(), surface, outputSettings))
                 {
                     return;
@@ -322,6 +326,11 @@ namespace Greenshot.Base.Core
             // Create the stream and call SaveToStream
             using (FileStream stream = new FileStream(fullPath, FileMode.Create, FileAccess.Write))
             {
+
+                //File.AppendAllText(
+                //    @"C:\Users\Nathan\Downloads\greenshotTest.log",
+                //    $"\n~~~~ Full Path: {fullPath}\n");
+
                 SaveToStream(surface, stream, outputSettings);
             }
 

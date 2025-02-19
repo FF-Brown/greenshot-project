@@ -22,6 +22,7 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Runtime.Serialization;
 using Dapplo.Windows.Common.Extensions;
 using Dapplo.Windows.Common.Structs;
@@ -40,6 +41,13 @@ namespace Greenshot.Editor.Drawing
     {
         public RectangleContainer(ISurface parent) : base(parent)
         {
+            File.AppendAllText(
+                @"C:\Users\Nathan\Downloads\greenshotTest.log",
+                $"Creating a rectangle.\n");
+            string isOrIsNot = parent == null ? "is" : "is not";
+            File.AppendAllText(
+                @"C:\Users\Nathan\Downloads\greenshotTest.log",
+                $"Surface {isOrIsNot} null.\n");
             Init();
         }
 
@@ -72,6 +80,15 @@ namespace Greenshot.Editor.Drawing
             Color lineColor = GetFieldValueAsColor(FieldType.LINE_COLOR, Color.Red);
             Color fillColor = GetFieldValueAsColor(FieldType.FILL_COLOR, Color.Transparent);
             bool shadow = GetFieldValueAsBool(FieldType.SHADOW);
+            File.AppendAllText(
+                @"C:\Users\Nathan\Downloads\greenshotTest.log",
+                $"Drawing rectangle, (left, top, width, height) ({Left}, {Top}, {Width}, {Height})\n");
+            File.AppendAllText(
+                @"C:\Users\Nathan\Downloads\greenshotTest.log",
+                $"Line thickness, {lineThickness}\n");
+            File.AppendAllText(
+                @"C:\Users\Nathan\Downloads\greenshotTest.log",
+                $"Line color, {lineColor.ToArgb()}\n");
             var rect = new NativeRect(Left, Top, Width, Height).Normalize();
 
             DrawRectangle(rect, graphics, rm, lineThickness, lineColor, fillColor, shadow);

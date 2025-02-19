@@ -89,9 +89,16 @@ namespace Greenshot.Base.Core.FileFormatHandlers
         {
             extension = NormalizeExtension(extension);
 
+            //File.AppendAllText(
+            //    @"C:\Users\Nathan\Downloads\greenshotTest.log",
+            //    $"Extension: {extension}\n");
+
             var saveFileFormatHandlers = fileFormatHandlers
                 .Where(ffh => ffh.Supports(FileFormatHandlerActions.LoadFromStream, extension))
                 .OrderBy(ffh => ffh.PriorityFor(FileFormatHandlerActions.LoadFromStream, extension)).ToList();
+
+            //File.AppendAllText(@"C:\Users\Nathan\Downloads\greenshotTest.log",
+            //    $"Filtered handlers: {string.Join(", ", saveFileFormatHandlers.Select(h => h.GetType().ToString()))}\n");
 
             if (!saveFileFormatHandlers.Any())
             {

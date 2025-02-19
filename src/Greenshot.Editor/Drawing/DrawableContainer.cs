@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Windows.Forms;
@@ -175,6 +176,12 @@ namespace Greenshot.Editor.Drawing
             get => left;
             set
             {
+                File.AppendAllText(
+                    @"C:\Users\Nathan\Downloads\greenshotTest.log",
+                    $"Left set to: {value}\n");
+                File.AppendAllText(
+                    @"C:\Users\Nathan\Downloads\greenshotTest.log",
+                    $"Call stack: {Environment.StackTrace}\n");
                 if (value == left)
                 {
                     return;

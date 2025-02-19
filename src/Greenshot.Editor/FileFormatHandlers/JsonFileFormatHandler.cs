@@ -232,6 +232,9 @@ namespace Greenshot.Editor.FileFormatHandlers
                 try
                 {
                     container = DeserializeContainer(type, root.GetRawText(), options);
+                    File.AppendAllText(
+                        @"C:\Users\Nathan\Downloads\greenshotTest.log",
+                        $"Deserialized to type {container.GetType()}\n");
                 }
                 catch (Exception ex)
                 {
@@ -300,6 +303,10 @@ namespace Greenshot.Editor.FileFormatHandlers
                 }
                 else if (type == typeof(RectangleContainer).AssemblyQualifiedName)
                 {
+                    //File.AppendAllText(
+                    //    @"C:\Users\Nathan\Downloads\greenshotTest.log",
+                    //    $"Json text, {jsonText}\n");
+
                     container = JsonSerializer.Deserialize<RectangleContainer>(jsonText, options);
                 }
                 else if (type == typeof(SpeechbubbleContainer).AssemblyQualifiedName)
