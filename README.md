@@ -1,7 +1,14 @@
-Greenshot - a free screenshot tool optimized for productivity
+Greenshot Community Edition - a new development effort on a beautiful screenshot tool
 =============================================================
 
-Welcome to the source repository for Greenshot
+Welcome to the source repository for the Greenshot Community Edition
+
+Community Edition?
+------------------
+
+This edition is a fork of the [original Greenshot project](https://github.com/greenshot/greenshot). It was made in hopes of getting this project moving again, mainly because of the lack of new official releases.
+
+If this project gains traction, it will either be split off from the original or - if the original authors were interested - merged into it. Neither of these events are likely to occur in the short-term.
 
 What is Greenshot?
 ------------------
@@ -19,12 +26,7 @@ Being easy to understand and configurable, Greenshot is an efficient tool for pr
 [If you find that Greenshot saves you a lot of time and/or money, you are very welcome to support the development of this screenshot software.](https://getgreenshot.org/support/)
 
 
-About this repository
----------------------
-This repository is for Greenshot 1.3, currently in development, but is the next planned release
-
 Releases
 --------
 
-You can find a list of all releases (stable and unstable) in the [Github releases](https://github.com/greenshot/greenshot/releases) or in the [version history on our website](https://getgreenshot.org/version-history/).
-The [downloads page on our website](https://getgreenshot.org/downloads/) always links to the latest stable release.
+Releases of this Community Edition can be found in the [Github releases page](https://github.com/greenshot/greenshot/releases).
