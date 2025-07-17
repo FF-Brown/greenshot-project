@@ -61,8 +61,6 @@ namespace Greenshot.Base.Interfaces.Drawing
 
         bool HasFilters { get; }
 
-        bool IsAreaHighlightContainer { get; }
-
         EditStatus Status { get; set; }
 
         void Invalidate();

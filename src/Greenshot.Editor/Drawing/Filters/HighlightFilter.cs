@@ -20,7 +20,6 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using Dapplo.Windows.Common.Structs;
@@ -48,7 +47,7 @@ namespace Greenshot.Editor.Drawing.Filters
         /// <param name="applyBitmap"></param>
         /// <param name="rect">NativeRect</param>
         /// <param name="renderMode"></param>
-        public override void Apply(Graphics graphics, Bitmap applyBitmap, NativeRect rect, RenderMode renderMode, IEnumerable<NativeRect> areasToExcludeFromFilters = null)
+        public override void Apply(Graphics graphics, Bitmap applyBitmap, NativeRect rect, RenderMode renderMode)
         {
             var applyRect = ImageHelper.CreateIntersectRectangle(applyBitmap.Size, rect, Invert);
 

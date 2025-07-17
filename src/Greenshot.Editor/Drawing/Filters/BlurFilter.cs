@@ -20,7 +20,6 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using Dapplo.Windows.Common.Structs;
@@ -52,7 +51,7 @@ namespace Greenshot.Editor.Drawing.Filters
             AddField(GetType(), FieldType.PREVIEW_QUALITY, 1.0d);
         }
 
-        public override void Apply(Graphics graphics, Bitmap applyBitmap, NativeRect rect, RenderMode renderMode, IEnumerable<NativeRect> areasToExcludeFromFilters = null)
+        public override void Apply(Graphics graphics, Bitmap applyBitmap, NativeRect rect, RenderMode renderMode)
         {
             int blurRadius = GetFieldValueAsInt(FieldType.BLUR_RADIUS);
             var applyRect = ImageHelper.CreateIntersectRectangle(applyBitmap.Size, rect, Invert);
@@ -66,10 +65,6 @@ namespace Greenshot.Editor.Drawing.Filters
             {
                 graphics.SetClip(applyRect);
                 graphics.ExcludeClip(rect);
-                foreach (NativeRect area in areasToExcludeFromFilters)
-                {
-                    graphics.ExcludeClip(area);
-                }
             }
 
             if (GdiPlusApi.IsBlurPossible(blurRadius))

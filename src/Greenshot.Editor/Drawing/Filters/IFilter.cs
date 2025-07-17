@@ -19,7 +19,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using Dapplo.Windows.Common.Structs;
@@ -30,7 +29,7 @@ namespace Greenshot.Editor.Drawing.Filters
     public interface IFilter : INotifyPropertyChanged, IFieldHolder
     {
         DrawableContainer Parent { get; set; }
-        void Apply(Graphics graphics, Bitmap bmp, NativeRect rect, RenderMode renderMode, IEnumerable<NativeRect> areasToExcludeFromFilters = null);
+        void Apply(Graphics graphics, Bitmap bmp, NativeRect rect, RenderMode renderMode);
         DrawableContainer GetParent();
         bool Invert { get; set; }
     }

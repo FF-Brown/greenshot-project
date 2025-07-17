@@ -25,6 +25,7 @@ using Greenshot.Base.Interfaces;
 using Greenshot.Base.Interfaces.Drawing;
 using Greenshot.Editor.Drawing.Fields;
 using Greenshot.Editor.Drawing.Filters;
+using Greenshot.Editor.Drawing.Filters.AreaFilters;
 
 namespace Greenshot.Editor.Drawing
 {
@@ -87,22 +88,14 @@ namespace Greenshot.Editor.Drawing
                     Add(new HighlightFilter(this));
                     break;
                 case PreparedFilter.AREA_HIGHLIGHT:
-                    var brightnessFilter = new BrightnessFilter(this)
-                    {
-                        Invert = true
-                    };
-                    Add(brightnessFilter);
-                    var blurFilter = new BlurFilter(this)
-                    {
-                        Invert = true
-                    };
-                    Add(blurFilter);
+                    var brightnessExclusionArea = new BrightnessExclusionArea(this);
+                    Add(brightnessExclusionArea);
+
+                    var blurExclusionArea = new BlurExclusionArea(this);
+                    Add(blurExclusionArea);
                     break;
                 case PreparedFilter.GRAYSCALE:
-                    AbstractFilter f = new GrayscaleFilter(this)
-                    {
-                        Invert = true
-                    };
+                    var f = new GrayscaleExclusionArea(this);
                     Add(f);
                     break;
                 case PreparedFilter.MAGNIFICATION:

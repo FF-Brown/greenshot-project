@@ -34,6 +34,7 @@ using Greenshot.Base.Interfaces;
 using Greenshot.Base.Interfaces.Drawing;
 using Greenshot.Editor.Configuration;
 using Greenshot.Editor.Drawing.Fields;
+using Greenshot.Editor.Drawing.Filters.InverseAreaFilters;
 using Greenshot.Editor.Forms;
 using Greenshot.Editor.Memento;
 
@@ -46,6 +47,9 @@ namespace Greenshot.Editor.Drawing
     public class DrawableContainerList : List<IDrawableContainer>, IDrawableContainerList
     {
         private static readonly ComponentResourceManager EditorFormResources = new(typeof(ImageEditorForm));
+        private static readonly AreaBlurFilter BlurFilter = new();
+        private static readonly AreaBrightnessFilter BrightnessFilter = new();
+        private static readonly AreaGrayscaleFilter GrayscaleFilter = new();
 
         public Guid ParentID { get; private set; }
 
@@ -328,9 +332,6 @@ namespace Greenshot.Editor.Drawing
                 return;
             }
 
-            DrawableContainer.IsBlurFilterApplied = false;
-            DrawableContainer.IsBrightnessFilterApplied = false;
-
             foreach (var drawableContainer in this)
             {
                 var dc = (DrawableContainer) drawableContainer;
@@ -341,10 +342,13 @@ namespace Greenshot.Editor.Drawing
 
                 if (dc.DrawingBounds.IntersectsWith(clipRectangle))
                 {
-                    IEnumerable<NativeRect> areaHighlightContainers = this.Where(c => c.IsAreaHighlightContainer).Select(c => c.Bounds);
-                    dc.DrawContent(g, bitmap, renderMode, clipRectangle, areaHighlightContainers);
+                    dc.DrawContent(g, bitmap, renderMode, clipRectangle);
                 }
             }
+
+            BlurFilter.Apply(g, bitmap, this.OfType<DrawableContainer>());
+            BrightnessFilter.Apply(g, bitmap, this.OfType<DrawableContainer>());
+            GrayscaleFilter.Apply(g, bitmap, this.OfType<DrawableContainer>());
         }
 
         /// <summary>
