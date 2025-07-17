@@ -57,9 +57,6 @@ namespace Greenshot.Editor.Drawing
         private const int M11 = 0;
         private const int M22 = 3;
 
-        public static bool IsBlurFilterApplied = false;
-        public static bool IsBrightnessFilterApplied = false;
-
         [OnDeserialized]
         private void OnDeserializedInit(StreamingContext context)
         {
