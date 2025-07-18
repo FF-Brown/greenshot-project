@@ -10,23 +10,23 @@ using Greenshot.Editor.Drawing.Filters.AreaFilters;
 
 namespace Greenshot.Editor.Drawing.Filters.InverseAreaFilters
 {
-    internal class AreaBlurFilter : AbstractFieldHolder
+    internal class AreaBlurFilter : InverseAreaFilter
     {
         public AreaBlurFilter()
         {
             AddField(GetType(), FieldType.BLUR_RADIUS, 3);
         }
 
-        public void Apply(Graphics graphics, Bitmap applyBitmap, IEnumerable<DrawableContainer> containers = null)
+        public override void Apply(Graphics graphics, Bitmap applyBitmap, IEnumerable<DrawableContainer> containers)
         {
             IEnumerable<DrawableContainer> blurExclusionContainers = containers.Where(c => c.Filters.Any(f => f is BlurExclusionArea));
-            if (blurExclusionContainers.Any())
+            if (applyBitmap != null && blurExclusionContainers.Any())
             {
                 Apply(graphics, applyBitmap, blurExclusionContainers.Select(c => c.Bounds));
             }
         }
 
-        private void Apply(Graphics graphics, Bitmap applyBitmap, IEnumerable<NativeRect> areasToExcludeFromFilters = null)
+        private void Apply(Graphics graphics, Bitmap applyBitmap, IEnumerable<NativeRect> areasToExcludeFromFilters)
         {
             int blurRadius = GetFieldValueAsInt(FieldType.BLUR_RADIUS);
             NativeRect applyRect = new(0, 0, applyBitmap.Width, applyBitmap.Height);

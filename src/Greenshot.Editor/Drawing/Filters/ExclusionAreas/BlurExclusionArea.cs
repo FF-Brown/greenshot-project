@@ -1,8 +1,16 @@
-﻿namespace Greenshot.Editor.Drawing.Filters.AreaFilters
+﻿using System.Drawing;
+using Dapplo.Windows.Common.Structs;
+using Greenshot.Base.Interfaces.Drawing;
+
+namespace Greenshot.Editor.Drawing.Filters.AreaFilters
 {
-    internal class BlurExclusionArea : FilterExclusionArea
+    internal class BlurExclusionArea : AbstractFilter
     {
         public BlurExclusionArea(DrawableContainer parent) : base(parent)
+        {
+        }
+
+        public override void Apply(Graphics graphics, Bitmap applyBitmap, NativeRect rect, RenderMode renderMode)
         {
         }
     }

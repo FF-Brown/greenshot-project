@@ -10,17 +10,17 @@ using Greenshot.Editor.Drawing.Filters.AreaFilters;
 
 namespace Greenshot.Editor.Drawing.Filters.InverseAreaFilters
 {
-    internal class AreaBrightnessFilter : AbstractFieldHolder
+    internal class AreaBrightnessFilter : InverseAreaFilter
     {
         public AreaBrightnessFilter()
         {
             AddField(GetType(), FieldType.BRIGHTNESS, 0.9d);
         }
 
-        public void Apply(Graphics graphics, Bitmap applyBitmap, IEnumerable<DrawableContainer> containers = null)
+        public override void Apply(Graphics graphics, Bitmap applyBitmap, IEnumerable<DrawableContainer> containers)
         {
             IEnumerable<DrawableContainer> blurExclusionContainers = containers.Where(c => c.Filters.Any(f => f is BrightnessExclusionArea));
-            if (blurExclusionContainers.Any())
+            if (applyBitmap != null && blurExclusionContainers.Any())
             {
                 Apply(graphics, applyBitmap, blurExclusionContainers.Select(c => c.Bounds));
             }
@@ -31,7 +31,7 @@ namespace Greenshot.Editor.Drawing.Filters.InverseAreaFilters
         /// </summary>
         /// <param name="graphics"></param>
         /// <param name="applyBitmap"></param>
-        private void Apply(Graphics graphics, Bitmap applyBitmap, IEnumerable<NativeRect> areasToExcludeFromFilters = null)
+        private void Apply(Graphics graphics, Bitmap applyBitmap, IEnumerable<NativeRect> areasToExcludeFromFilters)
         {
             NativeRect applyRect = new(0, 0, applyBitmap.Width, applyBitmap.Height);
 
