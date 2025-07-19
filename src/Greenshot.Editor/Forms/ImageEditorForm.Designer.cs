@@ -159,6 +159,8 @@ namespace Greenshot.Editor.Forms {
 			this.lineThicknessUpDown = new ToolStripNumericUpDown();
 			this.counterLabel = new GreenshotToolStripLabel();
 			this.counterUpDown = new ToolStripNumericUpDown();
+			this.inverseBlurLabel = new GreenshotToolStripLabel();
+			this.inverseBlurUpDown = new ToolStripNumericUpDown();
 			this.fontFamilyComboBox = new FontFamilyComboBox();
 			this.fontSizeLabel = new GreenshotToolStripLabel();
 			this.fontSizeUpDown = new ToolStripNumericUpDown();
@@ -1074,7 +1076,9 @@ namespace Greenshot.Editor.Forms {
 									this.btnCancel,
 									this.cropModeButton,
 									this.counterLabel,
-									this.counterUpDown});
+									this.counterUpDown,
+                                    this.inverseBlurLabel,
+                                    this.inverseBlurUpDown});
 			// 
 			// obfuscateModeButton
 			// 
@@ -1231,6 +1235,23 @@ namespace Greenshot.Editor.Forms {
 			this.counterUpDown.Value = 1;
 			this.counterUpDown.GotFocus += new System.EventHandler(this.ToolBarFocusableElementGotFocus);
 			this.counterUpDown.LostFocus += new System.EventHandler(this.ToolBarFocusableElementLostFocus);
+            // 
+            // inverseBlurLabel
+            // 
+            this.inverseBlurLabel.LanguageKey = "editor_counter_startvalue";
+            this.inverseBlurLabel.Name = "inverseBlurLabel";
+            // 
+            // inverseBlurUpDown
+            // 
+            this.inverseBlurUpDown.DecimalPlaces = 0;
+            this.inverseBlurUpDown.Increment = 1;
+            this.inverseBlurUpDown.Maximum = 100;
+            this.inverseBlurUpDown.Minimum = 0;
+            this.inverseBlurUpDown.Name = "inverseBlurUpDown";
+            this.inverseBlurUpDown.Text = "1";
+            this.inverseBlurUpDown.Value = 1;
+            this.inverseBlurUpDown.GotFocus += new System.EventHandler(this.ToolBarFocusableElementGotFocus);
+            this.inverseBlurUpDown.LostFocus += new System.EventHandler(this.ToolBarFocusableElementLostFocus);
 			// 
 			// lineThicknessLabel
 			// 
@@ -1952,7 +1973,9 @@ namespace Greenshot.Editor.Forms {
 		private GreenshotToolStripLabel lineThicknessLabel;
 		private ToolStripNumericUpDown lineThicknessUpDown;
 		private GreenshotToolStripLabel counterLabel;
+		private GreenshotToolStripLabel inverseBlurLabel;
 		private ToolStripNumericUpDown counterUpDown;
+		private ToolStripNumericUpDown inverseBlurUpDown;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;

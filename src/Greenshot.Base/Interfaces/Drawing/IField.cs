@@ -29,7 +29,8 @@ namespace Greenshot.Base.Interfaces.Drawing
     {
         NONE = 0,
         CONFIRMABLE = 1,
-        COUNTER = 2
+        COUNTER = 2,
+        BLUR = 3,
     }
 
     public interface IFieldType

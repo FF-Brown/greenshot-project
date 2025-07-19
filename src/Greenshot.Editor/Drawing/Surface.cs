@@ -62,6 +62,7 @@ namespace Greenshot.Editor.Drawing
         ///     This value is used to start counting the step labels
         /// </summary>
         private int _counterStart = 1;
+        private int _blurRadius = 3;
 
         /// <summary>
         /// The GUID of the surface
@@ -273,6 +274,22 @@ namespace Greenshot.Editor.Drawing
                 _counterStart = value;
                 Invalidate();
                 _propertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CounterStart)));
+            }
+        }
+
+        public int BlurRadius
+        {
+            get => _blurRadius;
+            set
+            {
+                if (_blurRadius == value)
+                {
+                    return;
+                }
+
+                _blurRadius = value;
+                Invalidate();
+                _propertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(BlurRadius)));
             }
         }
 

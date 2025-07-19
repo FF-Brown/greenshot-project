@@ -346,9 +346,9 @@ namespace Greenshot.Editor.Drawing
                 }
             }
 
-            BlurFilter.Apply(g, bitmap, this.OfType<DrawableContainer>());
-            BrightnessFilter.Apply(g, bitmap, this.OfType<DrawableContainer>());
-            GrayscaleFilter.Apply(g, bitmap, this.OfType<DrawableContainer>());
+            BlurFilter.Apply(g, bitmap, this.OfType<DrawableContainer>(), Parent);
+            BrightnessFilter.Apply(g, bitmap, this.OfType<DrawableContainer>(), Parent);
+            GrayscaleFilter.Apply(g, bitmap, this.OfType<DrawableContainer>(), Parent);
         }
 
         /// <summary>

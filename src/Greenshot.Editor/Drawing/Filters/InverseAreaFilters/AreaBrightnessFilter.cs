@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using Dapplo.Windows.Common.Structs;
 using Greenshot.Base.Core;
+using Greenshot.Base.Interfaces;
 using Greenshot.Editor.Drawing.Fields;
 using Greenshot.Editor.Drawing.Filters.AreaFilters;
 
@@ -17,7 +18,11 @@ namespace Greenshot.Editor.Drawing.Filters.InverseAreaFilters
             AddField(GetType(), FieldType.BRIGHTNESS, 0.9d);
         }
 
-        public override void Apply(Graphics graphics, Bitmap applyBitmap, IEnumerable<DrawableContainer> containers)
+        public override void Apply(
+            Graphics graphics,
+            Bitmap applyBitmap,
+            IEnumerable<DrawableContainer> containers,
+            ISurface parent)
         {
             IEnumerable<DrawableContainer> blurExclusionContainers = containers.Where(c => c.Filters.Any(f => f is BrightnessExclusionArea));
             if (applyBitmap != null && blurExclusionContainers.Any())

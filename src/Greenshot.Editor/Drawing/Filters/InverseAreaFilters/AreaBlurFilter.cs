@@ -5,20 +5,23 @@ using System.Linq;
 using Dapplo.Windows.Common.Structs;
 using Dapplo.Windows.Gdi32;
 using Greenshot.Base.Core;
-using Greenshot.Editor.Drawing.Fields;
+using Greenshot.Base.Interfaces;
 using Greenshot.Editor.Drawing.Filters.AreaFilters;
 
 namespace Greenshot.Editor.Drawing.Filters.InverseAreaFilters
 {
     internal class AreaBlurFilter : InverseAreaFilter
     {
-        public AreaBlurFilter()
-        {
-            AddField(GetType(), FieldType.BLUR_RADIUS, 3);
-        }
+        private int _blurRadius;
 
-        public override void Apply(Graphics graphics, Bitmap applyBitmap, IEnumerable<DrawableContainer> containers)
+        public override void Apply(
+            Graphics graphics,
+            Bitmap applyBitmap,
+            IEnumerable<DrawableContainer> containers,
+            ISurface parent)
         {
+            _blurRadius = parent.BlurRadius;
+
             IEnumerable<DrawableContainer> blurExclusionContainers = containers.Where(c => c.Filters.Any(f => f is BlurExclusionArea));
             if (applyBitmap != null && blurExclusionContainers.Any())
             {
@@ -28,7 +31,6 @@ namespace Greenshot.Editor.Drawing.Filters.InverseAreaFilters
 
         private void Apply(Graphics graphics, Bitmap applyBitmap, IEnumerable<NativeRect> areasToExcludeFromFilters)
         {
-            int blurRadius = GetFieldValueAsInt(FieldType.BLUR_RADIUS);
             NativeRect applyRect = new(0, 0, applyBitmap.Width, applyBitmap.Height);
             if (applyRect.Width == 0 || applyRect.Height == 0)
             {
@@ -42,14 +44,14 @@ namespace Greenshot.Editor.Drawing.Filters.InverseAreaFilters
                 graphics.ExcludeClip(area);
             }
 
-            if (GdiPlusApi.IsBlurPossible(blurRadius))
+            if (GdiPlusApi.IsBlurPossible(_blurRadius))
             {
-                GdiPlusApi.DrawWithBlur(graphics, applyBitmap, applyRect, null, null, blurRadius, false);
+                GdiPlusApi.DrawWithBlur(graphics, applyBitmap, applyRect, null, null, _blurRadius, false);
             }
             else
             {
                 using IFastBitmap fastBitmap = FastBitmap.CreateCloneOf(applyBitmap, applyRect);
-                ImageHelper.ApplyBoxBlur(fastBitmap, blurRadius);
+                ImageHelper.ApplyBoxBlur(fastBitmap, _blurRadius);
                 fastBitmap.DrawTo(graphics, applyRect);
             }
 

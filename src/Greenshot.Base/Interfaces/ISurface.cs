@@ -50,6 +50,8 @@ namespace Greenshot.Base.Interfaces
         /// </summary>
         int CounterStart { get; set; }
 
+        int BlurRadius { get; set; }
+
         /// <summary>
         /// Unique ID of the Surface
         /// </summary>
